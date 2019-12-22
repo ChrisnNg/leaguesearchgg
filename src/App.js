@@ -7,7 +7,9 @@ import axios from "axios";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { username: "" };
+
+    this.state = { username: "", icon: null, name: "", level: null };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +23,12 @@ class App extends Component {
     console.log("button clicked and sent", this.state.username);
     axios
       .post("/api", { username: this.state.username })
-      .then(function(response) {
-        console.log(response.data);
+      .then(response => {
+        this.setState({
+          icon: response.data.profileIconId,
+          level: response.data.summonerLevel,
+          name: response.data.name
+        });
       })
       .catch(function(error) {
         console.log(error);
@@ -48,9 +54,14 @@ class App extends Component {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+          <Button
+            variant="primary"
+            type="submit"
+            onClick={this.handleSubmit.bind(this)}
+          >
             Submit
           </Button>
+          {this.state.name} {this.state.level}
         </Form>
       </div>
     );
