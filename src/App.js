@@ -34,7 +34,14 @@ class App extends Component {
         console.log(error);
       });
   }
-
+  loadIcon(profileiconid) {
+    return (
+      <img
+        src={`http://ddragon.leagueoflegends.com/cdn/6.3.1/img/profileicon/${profileiconid}.png`}
+        alt="new"
+      />
+    );
+  }
   render() {
     return (
       <div className="App">
@@ -61,7 +68,8 @@ class App extends Component {
           >
             Submit
           </Button>
-          {this.state.name} {this.state.level}
+          {this.state.name} {this.state.level}{" "}
+          {this.state.name ? this.loadIcon(this.state.icon) : null}
         </Form>
       </div>
     );
