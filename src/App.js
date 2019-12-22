@@ -5,11 +5,22 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { username: "" };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ username: event.target.value });
+  }
+
   handleSubmit() {
     event.preventDefault();
-    console.log("button clicked");
+    console.log("button clicked and sent", this.state.username);
     axios
-      .get("/api")
+      .post("/api", { username: this.state.username })
       .then(function(response) {
         console.log(response.data);
       })
@@ -28,7 +39,11 @@ class App extends Component {
         <Form>
           <Form.Group controlId="formUsername">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="email" placeholder="Enter username" />
+            <Form.Control
+              type="email"
+              placeholder="Enter username"
+              onChange={this.handleChange}
+            />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>

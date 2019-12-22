@@ -23,6 +23,7 @@ const axios = require("axios");
 app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "build")));
 app.set("view engine", "ejs");
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -30,8 +31,8 @@ app.get("/", (req, res) => {
   res.json({ test: true });
 });
 
-app.get("/api", (req, res) => {
-  let summoner = "crisang";
+app.post("/api", (req, res) => {
+  let summoner = req.body.username;
 
   var authOptions = {
     method: "GET",
