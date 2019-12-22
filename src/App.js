@@ -5,11 +5,13 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 class App extends Component {
-  componentDidMount() {
+  handleSubmit() {
+    event.preventDefault();
+    console.log("button clicked");
     axios
-      .get("/")
+      .get("/api")
       .then(function(response) {
-        console.log(response);
+        console.log(response.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -31,7 +33,7 @@ class App extends Component {
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={this.handleSubmit}>
             Submit
           </Button>
         </Form>

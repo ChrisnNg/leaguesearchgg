@@ -31,12 +31,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  console.log("post req details", req.body);
+  let summoner = "crisang";
 
   var authOptions = {
     method: "GET",
-    url:
-      "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/crisang",
+    url: `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}`,
     headers: {
       Origin: "https://developer.riotgames.com",
       "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -51,7 +50,7 @@ app.get("/api", (req, res) => {
     .then(function(response) {
       console.log(response.data);
       console.log(response.status);
-      res.json(response.data);
+      res.send(response.data);
     })
     .catch(function(error) {
       console.log(error);
