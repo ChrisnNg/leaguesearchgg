@@ -27,22 +27,25 @@ class App extends Component {
 
   handleSubmit() {
     event.preventDefault();
-    console.log("button clicked and sent", this.state.username);
+
     axios
       .post("/summonerSearch", { username: this.state.username })
       .then(response => {
-        console.log("response from backend", response.data);
+        console.log("/summonerSearch", response.data);
         this.setState({
           icon: response.data.profileIconId,
           level: response.data.summonerLevel,
           name: response.data.name,
-          accountId: response.data.accountId
+          accountId: response.data.accountId,
+          summonerId: response.data.id
         });
-
-        return axios.post("/matchHistory", { accountId: this.state.accountId });
+        return axios.post("/matchHistory", {
+          accountId: this.state.accountId,
+          summonerId: this.state.summonerId
+        });
       })
       .then(response => {
-        console.log("matchhistory", response.data);
+        console.log("/matchHistory", response.data);
         const matches = [];
         response.data.matches.forEach((element, index) => {
           let timeSince = new Date(element.timestamp);
