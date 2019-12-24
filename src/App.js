@@ -124,6 +124,21 @@ class App extends Component {
       .then(
         axios.spread((...responses) => {
           console.log("final", responses);
+          const matches = [];
+
+          responses.forEach((element, index) => {
+            console.log(element, index);
+            matches.push(
+              <article key={index}>
+                Length: {element.data.gameDuration}
+                gameMode: {element.data.gameMode}
+                gameType: {element.data.gameType}
+                mapId: {element.data.mapId}
+                teams: dig into array
+              </article>
+            );
+            this.setState({ matchInfo: matches });
+          });
         })
       )
       .catch(function(error) {
@@ -171,6 +186,7 @@ class App extends Component {
           {this.state.name} {this.state.level}
           <div>{this.state.leagues}</div>
           <div>{this.state.matches}</div>
+          <div>{this.state.matchInfo}</div>
         </Form>
       </div>
     );
