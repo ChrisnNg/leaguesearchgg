@@ -80,6 +80,19 @@ app.post("/leagues", (req, res) => {
       res.send(response.data);
     });
 });
+
+app.post("/matchInfo", (req, res) => {
+  let matchId = req.body.matchId;
+
+  axios
+    .get(
+      `https://na1.api.riotgames.com/lol/match/v4/matches/${matchId}?api_key=${process.env.API_KEY}`
+    )
+    .then(response => {
+      res.send(response.data);
+    });
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

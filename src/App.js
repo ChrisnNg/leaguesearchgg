@@ -66,9 +66,13 @@ class App extends Component {
           console.log(responseMatches);
           const matches = [];
           const leagues = [];
+          const matchCalls = [];
 
-          responseMatches.matches.slice(0, 5).forEach((element, index) => {
+          responseMatches.matches.slice(0, 3).forEach((element, index) => {
             let timeSince = new Date(element.timestamp);
+            matchCalls.push(
+              axios.post("/matchInfo", { matchId: element.gameId })
+            );
 
             matches.push(
               <article key={index}>
@@ -84,9 +88,6 @@ class App extends Component {
                 {element.role}
                 Time:
                 <TimeAgo time={timeSince} />
-                <Button onClick={() => this.moreInfo(element.gameId)}>
-                  More info
-                </Button>
               </article>
             );
           });
@@ -116,6 +117,13 @@ class App extends Component {
           });
 
           this.setState({ matches, leagues });
+          console.log("current match state", matchCalls);
+          return axios.all(matchCalls);
+        })
+      )
+      .then(
+        axios.spread((...responses) => {
+          console.log("final", responses);
         })
       )
       .catch(function(error) {
