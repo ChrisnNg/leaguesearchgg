@@ -4,6 +4,7 @@ import "./App.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
+import championIder from "./hooks/championID.js";
 
 class App extends Component {
   constructor(props) {
@@ -87,6 +88,7 @@ class App extends Component {
               <article key={index}>
                 {element.lane}
                 {element.champion}
+                Time:
                 <TimeAgo time={timeSince} />
               </article>
             );
@@ -116,10 +118,27 @@ class App extends Component {
         console.log(error);
       });
   }
+
+  componentDidMount() {
+    //   function importAll(r) {
+    //     return r.keys().map(r);
+    //   }
+
+    //   const images = importAll(
+    //     require.context(
+    //       "./assets/dragontail-9.24.2/9.24.2/img/champion",
+    //       false,
+    //       /\.(png|jpe?g|svg)$/
+    //     )
+    //   );
+
+    //   console.log("logging images", images);
+    championIder(12);
+  }
   loadIcon(profileiconid) {
     return (
       <img
-        src={`http://ddragon.leagueoflegends.com/cdn/6.3.1/img/profileicon/${profileiconid}.png`}
+        src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
         alt="new"
       />
     );
