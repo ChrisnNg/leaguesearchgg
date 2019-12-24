@@ -3,11 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
-import timeago from "epoch-timeago";
-
-const TimeAgo = ({ time }) => {
-  return <time datetime={new Date(time).toISOString()}>{timeago(time)}</time>;
-};
+import TimeAgo from "./hooks/epochToTime.js";
 
 class App extends Component {
   constructor(props) {
@@ -58,7 +54,6 @@ class App extends Component {
               <TimeAgo time={timeSince} />
             </article>
           );
-          console.log(new Date(element.timestamp));
         });
         this.setState({ matches });
       })
