@@ -21,6 +21,10 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.moreInfo = this.moreInfo.bind(this);
+  }
+  moreInfo(event) {
+    console.log(event);
   }
 
   handleChange(event) {
@@ -30,6 +34,7 @@ class App extends Component {
   handleSubmit() {
     event.preventDefault();
 
+    console.log("submission");
     axios
       .post("/summonerSearch", { username: this.state.username })
       .then(response => {
@@ -58,10 +63,11 @@ class App extends Component {
           const responseLeagues = responses[1];
 
           console.log(responseLeagues);
+          console.log(responseMatches);
           const matches = [];
           const leagues = [];
 
-          responseMatches.matches.forEach((element, index) => {
+          responseMatches.matches.slice(0, 5).forEach((element, index) => {
             let timeSince = new Date(element.timestamp);
 
             matches.push(
@@ -75,8 +81,12 @@ class App extends Component {
                   className="champIcon"
                   alt={championIder(element.champion).id}
                 />
+                {element.role}
                 Time:
                 <TimeAgo time={timeSince} />
+                <Button onClick={() => this.moreInfo(element.gameId)}>
+                  More info
+                </Button>
               </article>
             );
           });
