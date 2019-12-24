@@ -22,7 +22,7 @@ class App extends Component {
     event.preventDefault();
     console.log("button clicked and sent", this.state.username);
     axios
-      .post("/api", { username: this.state.username })
+      .post("/summonerSearch", { username: this.state.username })
       .then(response => {
         console.log("response from backend", response.data);
         this.setState({

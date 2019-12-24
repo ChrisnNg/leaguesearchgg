@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
   res.json({ test: true });
 });
 
-app.post("/api", (req, res) => {
+app.post("/summonerSearch", (req, res) => {
   let summoner = req.body.username;
 
   var summonerInfoRequest = {
