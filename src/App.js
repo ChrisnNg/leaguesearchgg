@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Row, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
 import mapIder from "./hooks/mapId.js";
+import queueType from "./hooks/queueType.js";
 
 class App extends Component {
   constructor(props) {
@@ -76,15 +77,14 @@ class App extends Component {
 
           responseLeagues.forEach((element, index) => {
             leagues.push(
-              <article key={index}>
+              <Col key={index}>
                 {element.freshBlood}
                 {element.hotStreak}
                 {element.veteran}
                 LP: {element.leaguePoints}
                 W: {element.wins}
                 L: {element.losses}
-                Type: {element.queueType}
-                Tier: {element.tier}
+                Type: {queueType(element.queueType)}
                 <img
                   src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
                     0
@@ -92,8 +92,9 @@ class App extends Component {
                   className="champIcon"
                   alt={`${element.tier} Emblem`}
                 />
-                Rank: {element.rank}
-              </article>
+                {element.tier}
+                {element.rank}
+              </Col>
             );
           });
 
@@ -196,7 +197,7 @@ class App extends Component {
               onChange={this.handleChange}
             />
             <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
+              We'll never share your information with anyone else.
             </Form.Text>
           </Form.Group>
           <Button
@@ -208,9 +209,15 @@ class App extends Component {
           </Button>
           <section>
             {this.state.name ? this.loadIcon(this.state.icon) : null}
+            <br />
+            {this.state.name} <br />
+            <i>Level:</i> {this.state.level}
           </section>
-          {this.state.name} {this.state.level}
-          <div>{this.state.leagues}</div>
+
+          <Container>
+            <Row>{this.state.leagues}</Row>
+          </Container>
+          <h4>Recent Games</h4>
           <div>{this.state.matches}</div>
         </Form>
       </div>
