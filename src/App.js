@@ -97,14 +97,14 @@ class App extends Component {
               <article key={index}>
                 {element.freshBlood}
                 {element.hotStreak}
-                {element.leaguePoints}
-                {element.wins}
-                {element.losses}
-                {element.queueType}
-                {element.tier}
-                {element.rank}
                 {element.veteran}
-                {element.leagueId}
+                LP: {element.leaguePoints}
+                W: {element.wins}
+                L: {element.losses}
+                Type: {element.queueType}
+                Tier: {element.tier}
+                Rank: {element.rank}
+                LeagueID: {element.leagueId}
               </article>
             );
           });
