@@ -3,6 +3,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import timeago from "epoch-timeago";
+
+const TimeAgo = ({ time }) => {
+  return <time datetime={new Date(time).toISOString()}>{timeago(time)}</time>;
+};
 
 class App extends Component {
   constructor(props) {
@@ -44,14 +49,16 @@ class App extends Component {
         console.log("matchhistory", response.data);
         const matches = [];
         response.data.matches.forEach((element, index) => {
+          let timeSince = new Date(element.timestamp);
+
           matches.push(
             <article key={index}>
               {element.lane}
               {element.champion}
+              <TimeAgo time={timeSince} />
             </article>
           );
-
-          console.log(element);
+          console.log(new Date(element.timestamp));
         });
         this.setState({ matches });
       })
@@ -93,7 +100,9 @@ class App extends Component {
           >
             Submit
           </Button>
-          {this.state.name ? this.loadIcon(this.state.icon) : null}
+          <section>
+            {this.state.name ? this.loadIcon(this.state.icon) : null}
+          </section>
           {this.state.name} {this.state.level} <div>{this.state.matches}</div>
         </Form>
       </div>
