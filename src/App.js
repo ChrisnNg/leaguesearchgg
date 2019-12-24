@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
@@ -68,7 +68,7 @@ class App extends Component {
           const leagues = [];
           const matchCalls = [];
 
-          responseMatches.matches.slice(0, 3).forEach((element, index) => {
+          responseMatches.matches.slice(0, 10).forEach((element, index) => {
             matchCalls.push(
               axios.post("/matchInfo", { matchId: element.gameId })
             );
@@ -93,7 +93,6 @@ class App extends Component {
                   alt={`${element.tier} Emblem`}
                 />
                 Rank: {element.rank}
-                LeagueID: {element.leagueId}
               </article>
             );
           });
@@ -116,33 +115,50 @@ class App extends Component {
             );
             matches.push(
               <article key={index}>
-                Lane: {this.state.matchList.matches[index].lane}
-                Champion:{" "}
-                {championIder(this.state.matchList.matches[index].champion).id}
-                <img
-                  src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                    championIder(this.state.matchList.matches[index].champion)
-                      .id
-                  }_0.jpg`)}
-                  className="champIcon"
-                  alt={
-                    championIder(this.state.matchList.matches[index].champion)
-                      .id
-                  }
-                />
-                Role: {this.state.matchList.matches[index].role}
-                Time:
-                <TimeAgo time={timeSince} />
-                Length:{" "}
-                {Math.floor(element.data.gameDuration / 60) +
-                  "minutes and" +
-                  (element.data.gameDuration -
-                    Math.floor(element.data.gameDuration / 60) * 60) +
-                  "seconds"}
-                gameMode: {element.data.gameMode}
-                gameType: {element.data.gameType}
-                mapId: {mapIder(element.data.mapId)}
-                teams: dig into array
+                <Card className="text-center">
+                  <Card.Header>Featured</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Special title treatment</Card.Title>
+                    <Card.Text>
+                      Lane: {this.state.matchList.matches[index].lane}
+                      Champion:{" "}
+                      {
+                        championIder(
+                          this.state.matchList.matches[index].champion
+                        ).id
+                      }
+                      <img
+                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                          championIder(
+                            this.state.matchList.matches[index].champion
+                          ).id
+                        }_0.jpg`)}
+                        className="champIcon"
+                        alt={
+                          championIder(
+                            this.state.matchList.matches[index].champion
+                          ).id
+                        }
+                      />
+                      Role: {this.state.matchList.matches[index].role}
+                      Length:
+                      {Math.floor(element.data.gameDuration / 60) +
+                        "minutes and" +
+                        (element.data.gameDuration -
+                          Math.floor(element.data.gameDuration / 60) * 60) +
+                        "seconds"}
+                      gameMode: {element.data.gameMode}
+                      gameType: {element.data.gameType}
+                      mapId: {mapIder(element.data.mapId)}
+                      teams: dig into array
+                    </Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                  </Card.Body>
+                  <Card.Footer className="text-muted">
+                    {" "}
+                    <TimeAgo time={timeSince} />
+                  </Card.Footer>
+                </Card>
               </article>
             );
           });
