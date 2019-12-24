@@ -33,3 +33,7 @@
   height: 100px;
   width: 100px;
 }
+
+.centered {
+  margin: auto; max-width: 230px;
+}

@@ -77,32 +77,26 @@ class App extends Component {
 
           responseLeagues.forEach((element, index) => {
             leagues.push(
-              <Col key={index}>
-                <Row>
-                  <Col>
-                    <img
-                      src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
-                        0
-                      ) + element.tier.toLowerCase().substr(1)}.png`)}
-                      className="rankIcon"
-                      alt={`${element.tier} Emblem`}
-                    />
-                  </Col>
-                  <Col>
-                    <Row>
-                      {element.tier} {element.rank}
-                    </Row>
-                    <Row>{queueType(element.queueType)}</Row>
-                    {element.freshBlood}
-                    {element.hotStreak}
-                    {element.veteran}
-                    <Row>LP: {element.leaguePoints}</Row>
-                    <Row>
-                      W: {element.wins} - L: {element.losses}
-                    </Row>
-                  </Col>
-                </Row>
-              </Col>
+              <article key={index}>
+                <Col md="auto">
+                  <img
+                    src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
+                      0
+                    ) + element.tier.toLowerCase().substr(1)}.png`)}
+                    className="rankIcon"
+                    alt={`${element.tier} Emblem`}
+                  />
+                </Col>
+                <Col md="auto">
+                  {element.tier} {element.rank} <br />
+                  <i>{queueType(element.queueType)}</i> <br />
+                  {element.freshBlood}
+                  {element.hotStreak}
+                  {element.veteran}
+                  LP: {element.leaguePoints} <br />
+                  W: {element.wins} - L: {element.losses} <br />
+                </Col>
+              </article>
             );
           });
 
@@ -222,7 +216,10 @@ class App extends Component {
             {this.state.level ? `Level: ${this.state.level}` : null}
           </section>
 
-          <Container>{this.state.leagues}</Container>
+          <section className="centered">
+            <Row>{this.state.leagues}</Row>
+          </section>
+
           {this.state.name ? <h4>Recent Games</h4> : null}
 
           <div>{this.state.matches}</div>
