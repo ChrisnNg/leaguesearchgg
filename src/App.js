@@ -39,27 +39,75 @@ class App extends Component {
           accountId: response.data.accountId,
           summonerId: response.data.id
         });
-        return axios.post("/matchHistory", {
+
+        // const getLeagues = axios.get(
+        //   `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${process.env.API_KEY}`
+        // );
+
+        // axios
+        //   .all([getMatchHistory, getLeagues])
+        //   .then(
+        //     axios.spread((...responses) => {
+        //       const responseOne = responses[0].data;
+        //       const responseTwo = responses[1];
+
+        //       console.log(responseOne);
+        //       res.send([responseOne, responseTwo]);
+        //     })
+        //   )
+        //   .catch(errors => {
+        //     console.log(errors);
+        //     // react on errors.
+        //   });
+
+        const getMatchHistory = axios.post("/matchHistory", {
           accountId: this.state.accountId,
           summonerId: this.state.summonerId
         });
-      })
-      .then(response => {
-        console.log("/matchHistory", response.data);
-        const matches = [];
-        response.data.matches.forEach((element, index) => {
-          let timeSince = new Date(element.timestamp);
-
-          matches.push(
-            <article key={index}>
-              {element.lane}
-              {element.champion}
-              <TimeAgo time={timeSince} />
-            </article>
-          );
+        const getLeagues = axios.post("/leagues", {
+          accountId: this.state.accountId,
+          summonerId: this.state.summonerId
         });
-        this.setState({ matches });
+        return axios.all([getMatchHistory, getLeagues]);
       })
+      .then(
+        axios.spread((...responses) => {
+          const responseMatches = responses[0].data;
+          const responseLeagues = responses[1];
+
+          console.log(responseLeagues);
+          const matches = [];
+          responseMatches.matches.forEach((element, index) => {
+            let timeSince = new Date(element.timestamp);
+
+            matches.push(
+              <article key={index}>
+                {element.lane}
+                {element.champion}
+                <TimeAgo time={timeSince} />
+              </article>
+            );
+          });
+          this.setState({ matches });
+        })
+      )
+
+      // (response => {
+      //   console.log("/matchHistory", response.data);
+      //   const matches = [];
+      //   response.data.matches.forEach((element, index) => {
+      //     let timeSince = new Date(element.timestamp);
+
+      //     matches.push(
+      //       <article key={index}>
+      //         {element.lane}
+      //         {element.champion}
+      //         <TimeAgo time={timeSince} />
+      //       </article>
+      //     );
+      //   });
+      //   this.setState({ matches });
+      // })
       .catch(function(error) {
         console.log(error);
       });
