@@ -78,22 +78,30 @@ class App extends Component {
           responseLeagues.forEach((element, index) => {
             leagues.push(
               <Col key={index}>
-                {element.freshBlood}
-                {element.hotStreak}
-                {element.veteran}
-                LP: {element.leaguePoints}
-                W: {element.wins}
-                L: {element.losses}
-                Type: {queueType(element.queueType)}
-                <img
-                  src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
-                    0
-                  ) + element.tier.toLowerCase().substr(1)}.png`)}
-                  className="champIcon"
-                  alt={`${element.tier} Emblem`}
-                />
-                {element.tier}
-                {element.rank}
+                <Row>
+                  <Col>
+                    <img
+                      src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
+                        0
+                      ) + element.tier.toLowerCase().substr(1)}.png`)}
+                      className="rankIcon"
+                      alt={`${element.tier} Emblem`}
+                    />
+                  </Col>
+                  <Col>
+                    <Row>
+                      {element.tier} {element.rank}
+                    </Row>
+                    <Row>{queueType(element.queueType)}</Row>
+                    {element.freshBlood}
+                    {element.hotStreak}
+                    {element.veteran}
+                    <Row>LP: {element.leaguePoints}</Row>
+                    <Row>
+                      W: {element.wins} - L: {element.losses}
+                    </Row>
+                  </Col>
+                </Row>
               </Col>
             );
           });
@@ -211,13 +219,12 @@ class App extends Component {
             {this.state.name ? this.loadIcon(this.state.icon) : null}
             <br />
             {this.state.name} <br />
-            <i>Level:</i> {this.state.level}
+            {this.state.level ? `Level: ${this.state.level}` : null}
           </section>
 
-          <Container>
-            <Row>{this.state.leagues}</Row>
-          </Container>
-          <h4>Recent Games</h4>
+          <Container>{this.state.leagues}</Container>
+          {this.state.name ? <h4>Recent Games</h4> : null}
+
           <div>{this.state.matches}</div>
         </Form>
       </div>
