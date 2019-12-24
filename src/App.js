@@ -18,7 +18,8 @@ class App extends Component {
       name: "",
       level: null,
       matches: [],
-      leagues: []
+      leagues: [],
+      leaguesLength: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -69,13 +70,16 @@ class App extends Component {
           const leagues = [];
           const matchCalls = [];
 
-          responseMatches.matches.slice(0, 10).forEach((element, index) => {
+          responseMatches.matches.slice(0, 2).forEach((element, index) => {
             matchCalls.push(
               axios.post("/matchInfo", { matchId: element.gameId })
             );
           });
 
+          let leaguesLength = 0;
           responseLeagues.forEach((element, index) => {
+            leaguesLength += 1;
+
             leagues.push(
               <article key={index}>
                 <Col md="auto">
@@ -99,8 +103,8 @@ class App extends Component {
               </article>
             );
           });
-
-          this.setState({ matchList: responseMatches, leagues });
+          console.log(leaguesLength);
+          this.setState({ matchList: responseMatches, leagues, leaguesLength });
           console.log("current match state", matchCalls);
           return axios.all(matchCalls);
         })
@@ -216,7 +220,9 @@ class App extends Component {
             {this.state.level ? `Level: ${this.state.level}` : null}
           </section>
 
-          <section className="centered">
+          <section
+            className={this.state.leaguesLength === 1 ? "single" : "centered"}
+          >
             <Row>{this.state.leagues}</Row>
           </section>
 

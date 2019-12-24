@@ -37,3 +37,7 @@
 .centered {
   margin: auto; max-width: 230px;
 }
+
+.single {
+  margin: auto; max-width: 100px;
+}
