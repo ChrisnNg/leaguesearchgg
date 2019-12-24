@@ -87,7 +87,7 @@ class App extends Component {
             matches.push(
               <article key={index}>
                 {element.lane}
-                {element.champion}
+                {championIder(element.champion)}
                 Time:
                 <TimeAgo time={timeSince} />
               </article>
@@ -123,7 +123,6 @@ class App extends Component {
     //   function importAll(r) {
     //     return r.keys().map(r);
     //   }
-
     //   const images = importAll(
     //     require.context(
     //       "./assets/dragontail-9.24.2/9.24.2/img/champion",
@@ -131,9 +130,7 @@ class App extends Component {
     //       /\.(png|jpe?g|svg)$/
     //     )
     //   );
-
     //   console.log("logging images", images);
-    championIder(12);
   }
   loadIcon(profileiconid) {
     return (
