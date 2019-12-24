@@ -60,7 +60,7 @@ class App extends Component {
       .then(
         axios.spread((...responses) => {
           const responseMatches = responses[0].data;
-          const responseLeagues = responses[1];
+          const responseLeagues = responses[1].data;
 
           console.log(responseLeagues);
           console.log(responseMatches);
@@ -74,25 +74,25 @@ class App extends Component {
               axios.post("/matchInfo", { matchId: element.gameId })
             );
 
-            matches.push(
-              <article key={index}>
-                {element.lane}
-                {championIder(element.champion).id}
-                <img
-                  src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                    championIder(element.champion).id
-                  }_0.jpg`)}
-                  className="champIcon"
-                  alt={championIder(element.champion).id}
-                />
-                {element.role}
-                Time:
-                <TimeAgo time={timeSince} />
-              </article>
-            );
+            // matches.push(
+            //   <article key={index}>
+            //     {element.lane}
+            //     {championIder(element.champion).id}
+            //     <img
+            //       src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+            //         championIder(element.champion).id
+            //       }_0.jpg`)}
+            //       className="champIcon"
+            //       alt={championIder(element.champion).id}
+            //     />
+            //     {element.role}
+            //     Time:
+            //     <TimeAgo time={timeSince} />
+            //   </article>
+            // );
           });
 
-          responseLeagues.data.forEach((element, index) => {
+          responseLeagues.forEach((element, index) => {
             leagues.push(
               <article key={index}>
                 {element.freshBlood}
@@ -116,7 +116,7 @@ class App extends Component {
             );
           });
 
-          this.setState({ matches, leagues });
+          this.setState({ matchList: responseMatches, leagues });
           console.log("current match state", matchCalls);
           return axios.all(matchCalls);
         })
@@ -124,12 +124,33 @@ class App extends Component {
       .then(
         axios.spread((...responses) => {
           console.log("final", responses);
+          let matchList = [...this.state.matchList];
+
           const matches = [];
+          console.log("intial matches", this.state.matchList);
 
           responses.forEach((element, index) => {
-            console.log(element, index);
+            let timeSince = new Date(
+              this.state.matchList.matches[index].timestamp
+            );
             matches.push(
               <article key={index}>
+                {this.state.matchList.matches[index].lane}
+                {championIder(this.state.matchList.matches[index].champion).id}
+                <img
+                  src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                    championIder(this.state.matchList.matches[index].champion)
+                      .id
+                  }_0.jpg`)}
+                  className="champIcon"
+                  alt={
+                    championIder(this.state.matchList.matches[index].champion)
+                      .id
+                  }
+                />
+                {this.state.matchList.matches[index].role}
+                Time:
+                <TimeAgo time={timeSince} />
                 Length: {element.data.gameDuration}
                 gameMode: {element.data.gameMode}
                 gameType: {element.data.gameType}
@@ -137,8 +158,10 @@ class App extends Component {
                 teams: dig into array
               </article>
             );
-            this.setState({ matchInfo: matches });
           });
+
+          this.setState({ matches });
+          console.log(matches, "after setstate");
         })
       )
       .catch(function(error) {
@@ -186,7 +209,6 @@ class App extends Component {
           {this.state.name} {this.state.level}
           <div>{this.state.leagues}</div>
           <div>{this.state.matches}</div>
-          <div>{this.state.matchInfo}</div>
         </Form>
       </div>
     );
