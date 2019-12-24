@@ -4,7 +4,8 @@ import "./App.css";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
-import championIder from "./hooks/championID.js";
+import championIder from "./hooks/championId.js";
+import mapIder from "./hooks/mapId.js";
 
 class App extends Component {
   constructor(props) {
@@ -64,32 +65,13 @@ class App extends Component {
 
           console.log(responseLeagues);
           console.log(responseMatches);
-          const matches = [];
           const leagues = [];
           const matchCalls = [];
 
           responseMatches.matches.slice(0, 3).forEach((element, index) => {
-            let timeSince = new Date(element.timestamp);
             matchCalls.push(
               axios.post("/matchInfo", { matchId: element.gameId })
             );
-
-            // matches.push(
-            //   <article key={index}>
-            //     {element.lane}
-            //     {championIder(element.champion).id}
-            //     <img
-            //       src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-            //         championIder(element.champion).id
-            //       }_0.jpg`)}
-            //       className="champIcon"
-            //       alt={championIder(element.champion).id}
-            //     />
-            //     {element.role}
-            //     Time:
-            //     <TimeAgo time={timeSince} />
-            //   </article>
-            // );
           });
 
           responseLeagues.forEach((element, index) => {
@@ -124,7 +106,6 @@ class App extends Component {
       .then(
         axios.spread((...responses) => {
           console.log("final", responses);
-          let matchList = [...this.state.matchList];
 
           const matches = [];
           console.log("intial matches", this.state.matchList);
@@ -135,7 +116,8 @@ class App extends Component {
             );
             matches.push(
               <article key={index}>
-                {this.state.matchList.matches[index].lane}
+                Lane: {this.state.matchList.matches[index].lane}
+                Champion:{" "}
                 {championIder(this.state.matchList.matches[index].champion).id}
                 <img
                   src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
@@ -148,13 +130,13 @@ class App extends Component {
                       .id
                   }
                 />
-                {this.state.matchList.matches[index].role}
+                Role: {this.state.matchList.matches[index].role}
                 Time:
                 <TimeAgo time={timeSince} />
                 Length: {element.data.gameDuration}
                 gameMode: {element.data.gameMode}
                 gameType: {element.data.gameType}
-                mapId: {element.data.mapId}
+                mapId: {mapIder(element.data.mapId)}
                 teams: dig into array
               </article>
             );
