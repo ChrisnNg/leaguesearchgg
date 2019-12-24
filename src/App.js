@@ -133,7 +133,12 @@ class App extends Component {
                 Role: {this.state.matchList.matches[index].role}
                 Time:
                 <TimeAgo time={timeSince} />
-                Length: {element.data.gameDuration}
+                Length:{" "}
+                {Math.floor(element.data.gameDuration / 60) +
+                  "minutes and" +
+                  (element.data.gameDuration -
+                    Math.floor(element.data.gameDuration / 60) * 60) +
+                  "seconds"}
                 gameMode: {element.data.gameMode}
                 gameType: {element.data.gameType}
                 mapId: {mapIder(element.data.mapId)}
