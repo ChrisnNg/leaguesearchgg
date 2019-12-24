@@ -87,7 +87,7 @@ class App extends Component {
             matches.push(
               <article key={index}>
                 {element.lane}
-                {championIder(element.champion)}
+                {championIder(element.champion).id}
                 Time:
                 <TimeAgo time={timeSince} />
               </article>

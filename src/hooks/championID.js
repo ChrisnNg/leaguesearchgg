@@ -1,11 +1,9 @@
 import champions from "../assets/dragontail-9.24.2/9.24.2/data/en_US/champion.json";
 
 export default function(champID) {
-  console.log(champions.data);
-
   for (const key in champions.data) {
     if (champions.data[key]["key"] == champID) {
-      return champions.data[key]["id"];
+      return champions.data[key];
     }
   }
 }
