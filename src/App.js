@@ -24,11 +24,18 @@ class App extends Component {
     axios
       .post("/api", { username: this.state.username })
       .then(response => {
+        console.log("response from backend", response.data);
         this.setState({
           icon: response.data.profileIconId,
           level: response.data.summonerLevel,
-          name: response.data.name
+          name: response.data.name,
+          accountId: response.data.accountId
         });
+
+        return axios.post("/matchHistory", { accountId: this.state.accountId });
+      })
+      .then(function(response) {
+        console.log("matchhistory", response.data);
       })
       .catch(function(error) {
         console.log(error);
