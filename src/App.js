@@ -68,8 +68,8 @@ class App extends Component {
           >
             Submit
           </Button>
-          {this.state.name} {this.state.level}{" "}
           {this.state.name ? this.loadIcon(this.state.icon) : null}
+          {this.state.name} {this.state.level}{" "}
         </Form>
       </div>
     );
