@@ -42,26 +42,6 @@ class App extends Component {
           summonerId: response.data.id
         });
 
-        // const getLeagues = axios.get(
-        //   `https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${process.env.API_KEY}`
-        // );
-
-        // axios
-        //   .all([getMatchHistory, getLeagues])
-        //   .then(
-        //     axios.spread((...responses) => {
-        //       const responseOne = responses[0].data;
-        //       const responseTwo = responses[1];
-
-        //       console.log(responseOne);
-        //       res.send([responseOne, responseTwo]);
-        //     })
-        //   )
-        //   .catch(errors => {
-        //     console.log(errors);
-        //     // react on errors.
-        //   });
-
         const getMatchHistory = axios.post("/matchHistory", {
           accountId: this.state.accountId,
           summonerId: this.state.summonerId
@@ -88,6 +68,11 @@ class App extends Component {
               <article key={index}>
                 {element.lane}
                 {championIder(element.champion).id}
+                <img
+                  src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                    championIder(element.champion).id
+                  }_0.jpg`)}
+                />
                 Time:
                 <TimeAgo time={timeSince} />
               </article>
