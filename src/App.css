@@ -22,3 +22,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.champIcon {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}

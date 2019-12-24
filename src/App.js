@@ -72,6 +72,8 @@ class App extends Component {
                   src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
                     championIder(element.champion).id
                   }_0.jpg`)}
+                  className="champIcon"
+                  alt={championIder(element.champion).id}
                 />
                 Time:
                 <TimeAgo time={timeSince} />
@@ -90,6 +92,13 @@ class App extends Component {
                 L: {element.losses}
                 Type: {element.queueType}
                 Tier: {element.tier}
+                <img
+                  src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
+                    0
+                  ) + element.tier.toLowerCase().substr(1)}.png`)}
+                  className="champIcon"
+                  alt={`${element.tier} Emblem`}
+                />
                 Rank: {element.rank}
                 LeagueID: {element.leagueId}
               </article>
@@ -104,19 +113,6 @@ class App extends Component {
       });
   }
 
-  componentDidMount() {
-    //   function importAll(r) {
-    //     return r.keys().map(r);
-    //   }
-    //   const images = importAll(
-    //     require.context(
-    //       "./assets/dragontail-9.24.2/9.24.2/img/champion",
-    //       false,
-    //       /\.(png|jpe?g|svg)$/
-    //     )
-    //   );
-    //   console.log("logging images", images);
-  }
   loadIcon(profileiconid) {
     return (
       <img
@@ -134,10 +130,10 @@ class App extends Component {
         </div>
         <Form>
           <Form.Group controlId="formUsername">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Summoner Name</Form.Label>
             <Form.Control
-              type="email"
-              placeholder="Enter username"
+              type="search"
+              placeholder="Enter Summoner Name"
               onChange={this.handleChange}
             />
             <Form.Text className="text-muted">
