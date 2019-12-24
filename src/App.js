@@ -14,7 +14,8 @@ class App extends Component {
       icon: null,
       name: "",
       level: null,
-      matches: []
+      matches: [],
+      leagues: []
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -77,6 +78,8 @@ class App extends Component {
 
           console.log(responseLeagues);
           const matches = [];
+          const leagues = [];
+
           responseMatches.matches.forEach((element, index) => {
             let timeSince = new Date(element.timestamp);
 
@@ -88,26 +91,27 @@ class App extends Component {
               </article>
             );
           });
-          this.setState({ matches });
+
+          responseLeagues.data.forEach((element, index) => {
+            leagues.push(
+              <article key={index}>
+                {element.freshBlood}
+                {element.hotStreak}
+                {element.leaguePoints}
+                {element.wins}
+                {element.losses}
+                {element.queueType}
+                {element.tier}
+                {element.rank}
+                {element.veteran}
+                {element.leagueId}
+              </article>
+            );
+          });
+
+          this.setState({ matches, leagues });
         })
       )
-
-      // (response => {
-      //   console.log("/matchHistory", response.data);
-      //   const matches = [];
-      //   response.data.matches.forEach((element, index) => {
-      //     let timeSince = new Date(element.timestamp);
-
-      //     matches.push(
-      //       <article key={index}>
-      //         {element.lane}
-      //         {element.champion}
-      //         <TimeAgo time={timeSince} />
-      //       </article>
-      //     );
-      //   });
-      //   this.setState({ matches });
-      // })
       .catch(function(error) {
         console.log(error);
       });
@@ -149,7 +153,9 @@ class App extends Component {
           <section>
             {this.state.name ? this.loadIcon(this.state.icon) : null}
           </section>
-          {this.state.name} {this.state.level} <div>{this.state.matches}</div>
+          {this.state.name} {this.state.level}
+          <div>{this.state.leagues}</div>
+          <div>{this.state.matches}</div>
         </Form>
       </div>
     );
