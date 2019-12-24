@@ -8,7 +8,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { username: "", icon: null, name: "", level: null };
+    this.state = {
+      username: "",
+      icon: null,
+      name: "",
+      level: null,
+      matches: []
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,8 +40,20 @@ class App extends Component {
 
         return axios.post("/matchHistory", { accountId: this.state.accountId });
       })
-      .then(function(response) {
+      .then(response => {
         console.log("matchhistory", response.data);
+        const matches = [];
+        response.data.matches.forEach((element, index) => {
+          matches.push(
+            <article key={index}>
+              {element.lane}
+              {element.champion}
+            </article>
+          );
+
+          console.log(element);
+        });
+        this.setState({ matches });
       })
       .catch(function(error) {
         console.log(error);
@@ -76,7 +94,7 @@ class App extends Component {
             Submit
           </Button>
           {this.state.name ? this.loadIcon(this.state.icon) : null}
-          {this.state.name} {this.state.level}{" "}
+          {this.state.name} {this.state.level} <div>{this.state.matches}</div>
         </Form>
       </div>
     );
