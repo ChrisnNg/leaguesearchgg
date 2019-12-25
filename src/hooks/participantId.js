@@ -1,11 +1,8 @@
 export default function(championId, participantArray) {
   for (const player of participantArray) {
-    console.log("element from hook", player);
     if (player.championId === championId) {
-      if (player.stats.win) {
-        return "Won";
-      }
-      return "Lost";
+      console.log("element from hook", player);
+      return player;
     }
   }
   return "unidentified";

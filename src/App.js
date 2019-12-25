@@ -10,6 +10,7 @@ import queueType from "./hooks/queueType.js";
 import queueId from "./hooks/queueId.js";
 import participantId from "./hooks/participantId.js";
 import positionId from "./hooks/positionId.js";
+import itemsId from "./hooks/itemsId.js";
 
 class App extends Component {
   constructor(props) {
@@ -126,6 +127,12 @@ class App extends Component {
               this.state.matchList.matches[index].timestamp
             );
             console.log("each match", element);
+
+            let playerInfo = participantId(
+              this.state.matchList.matches[index].champion,
+              element.data.participants
+            );
+
             matches.push(
               <article key={index}>
                 <Card className="text-center">
@@ -135,10 +142,7 @@ class App extends Component {
                   </Card.Header>
                   <Card.Body>
                     <Card.Title>
-                      {participantId(
-                        this.state.matchList.matches[index].champion,
-                        element.data.participants
-                      )}
+                      {playerInfo.stats.win ? "Won" : "Lost"}
                     </Card.Title>
 
                     <Col>
@@ -155,7 +159,8 @@ class App extends Component {
                           ).id
                         }
                       />
-
+                      {playerInfo.spell1Id} {playerInfo.spell2Id}
+                      {itemsId(playerInfo.stats)}
                       <br />
                       {
                         championIder(
