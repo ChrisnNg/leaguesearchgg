@@ -10,7 +10,6 @@ import queueType from "./hooks/queueType.js";
 import queueId from "./hooks/queueId.js";
 import participantId from "./hooks/participantId.js";
 import positionId from "./hooks/positionId.js";
-import { element } from "prop-types";
 
 class App extends Component {
   constructor(props) {
@@ -110,7 +109,7 @@ class App extends Component {
 
           this.setState({
             matchList: responseMatches,
-            leagues: { html: leagues, leaguesLength, tier }
+            leagues: { html: leagues, length: leaguesLength, tier }
           });
 
           return axios.all(matchCalls);
@@ -240,7 +239,9 @@ class App extends Component {
           </section>
 
           <section
-            className={this.state.leagues.length === 1 ? "single" : "centered"}
+            className={
+              this.state.leagues["length"] === 1 ? "single" : "centered"
+            }
           >
             <Row>{this.state.leagues.html}</Row>
           </section>
