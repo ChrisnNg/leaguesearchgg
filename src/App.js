@@ -159,8 +159,8 @@ class App extends Component {
                             this.state.matchList.matches[index].champion
                           ).id
                         }
-                      />
-                      {summonersId(playerInfo.spell1Id)}{" "}
+                      />{" "}
+                      {summonersId(playerInfo.spell1Id)}
                       {summonersId(playerInfo.spell2Id)}
                       {itemsId(playerInfo.stats)}
                       <br />

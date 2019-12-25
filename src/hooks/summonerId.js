@@ -9,7 +9,7 @@ export default function(summonerId) {
           src={require(`../assets/summoners/${element.name
             .charAt(0)
             .toUpperCase() + element.name.substr(1)}.png`)}
-          className="champIcon"
+          className="itemIcon"
           alt="Item0"
         />
       );
