@@ -11,6 +11,7 @@ import queueId from "./hooks/queueId.js";
 import participantId from "./hooks/participantId.js";
 import positionId from "./hooks/positionId.js";
 import itemsId from "./hooks/itemsId.js";
+import summonersId from "./hooks/summonerId.js";
 
 class App extends Component {
   constructor(props) {
@@ -159,7 +160,8 @@ class App extends Component {
                           ).id
                         }
                       />
-                      {playerInfo.spell1Id} {playerInfo.spell2Id}
+                      {summonersId(playerInfo.spell1Id)}{" "}
+                      {summonersId(playerInfo.spell2Id)}
                       {itemsId(playerInfo.stats)}
                       <br />
                       {
