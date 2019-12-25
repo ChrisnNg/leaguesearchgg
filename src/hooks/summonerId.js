@@ -3,8 +3,7 @@ import summoners from "../assets/summoners.json";
 
 export default function(summonerId) {
   for (const element of summoners) {
-    console.log(element);
-    if (element.key == summonerId) {
+    if (element.key === summonerId.toString()) {
       return (
         <img
           src={require(`../assets/summoners/${element.name

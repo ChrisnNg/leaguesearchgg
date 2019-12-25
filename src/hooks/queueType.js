@@ -4,7 +4,7 @@ export default function(queue) {
       return "Solo Queue";
     case "RANKED_FLEX_SR":
       return "Flex Queue";
+    default:
+      return "unidentified";
   }
-
-  return "unidentified";
 }
