@@ -130,54 +130,54 @@ class App extends Component {
             matches.push(
               <article key={index}>
                 <Card className="text-center">
-                  <Card.Header>Featured</Card.Header>
+                  <Card.Header>
+                    {mapIder(element.data.mapId)}{" "}
+                    {queueId(this.state.matchList.matches[index].queue)}
+                  </Card.Header>
                   <Card.Body>
-                    <Card.Title>Special title treatment</Card.Title>
-                    <Card.Text>
-                      Lane: {this.state.matchList.matches[index].lane}
-                      <Col>
-                        <img
-                          src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                            championIder(
-                              this.state.matchList.matches[index].champion
-                            ).id
-                          }_0.jpg`)}
-                          className="champIcon"
-                          alt={
-                            championIder(
-                              this.state.matchList.matches[index].champion
-                            ).id
-                          }
-                        />
+                    <Card.Title>
+                      {participantId(
+                        this.state.matchList.matches[index].champion,
+                        element.data.participants
+                      )}
+                    </Card.Title>
 
-                        <br />
-                        {
+                    <Col>
+                      <img
+                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                          championIder(
+                            this.state.matchList.matches[index].champion
+                          ).id
+                        }_0.jpg`)}
+                        className="champIcon"
+                        alt={
                           championIder(
                             this.state.matchList.matches[index].champion
                           ).id
                         }
-                      </Col>
-                      RoleIcon:{" "}
+                      />
+
+                      <br />
+                      {
+                        championIder(
+                          this.state.matchList.matches[index].champion
+                        ).id
+                      }
+                    </Col>
+                    <Col>
                       {positionId(
                         this.state.matchList.matches[index].lane,
                         this.state.matchList.matches[index].role,
                         this.state.leagues.tier
                       )}
-                      Role: {this.state.matchList.matches[index].role}
-                      Length:
+                    </Col>
+                    <Card.Text>
+                      Game Length:{" "}
                       {Math.floor(element.data.gameDuration / 60) +
-                        "minutes and" +
+                        " minutes and " +
                         (element.data.gameDuration -
                           Math.floor(element.data.gameDuration / 60) * 60) +
-                        "seconds"}
-                      Queue:{" "}
-                      {queueId(this.state.matchList.matches[index].queue)}
-                      mapId: {mapIder(element.data.mapId)}
-                      teams:{" "}
-                      {participantId(
-                        this.state.matchList.matches[index].champion,
-                        element.data.participants
-                      )}
+                        " seconds "}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
