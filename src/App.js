@@ -7,6 +7,7 @@ import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
 import mapIder from "./hooks/mapId.js";
 import queueType from "./hooks/queueType.js";
+import queueId from "./hooks/queueId.js";
 
 class App extends Component {
   constructor(props) {
@@ -18,8 +19,7 @@ class App extends Component {
       name: "",
       level: null,
       matches: [],
-      leagues: { html: [], length: 0 },
-      leaguesLength: 0
+      leagues: { html: [], length: 0 }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -158,8 +158,8 @@ class App extends Component {
                         (element.data.gameDuration -
                           Math.floor(element.data.gameDuration / 60) * 60) +
                         "seconds"}
-                      gameMode: {element.data.gameMode}
-                      gameType: {element.data.gameType}
+                      Queue:{" "}
+                      {queueId(this.state.matchList.matches[index].queue)}
                       mapId: {mapIder(element.data.mapId)}
                       teams: dig into array
                     </Card.Text>
@@ -231,7 +231,6 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-
           <div>{this.state.matches}</div>
         </Form>
       </div>
