@@ -18,7 +18,7 @@ class App extends Component {
       name: "",
       level: null,
       matches: [],
-      leagues: [],
+      leagues: { html: [], length: 0 },
       leaguesLength: 0
     };
 
@@ -104,8 +104,12 @@ class App extends Component {
             );
           });
           console.log(leaguesLength);
-          this.setState({ matchList: responseMatches, leagues, leaguesLength });
+          this.setState({
+            matchList: responseMatches,
+            leagues: { html: leagues, leaguesLength }
+          });
           console.log("current match state", matchCalls);
+          console.log("current state", this.state);
           return axios.all(matchCalls);
         })
       )
@@ -221,9 +225,9 @@ class App extends Component {
           </section>
 
           <section
-            className={this.state.leaguesLength === 1 ? "single" : "centered"}
+            className={this.state.leagues.length === 1 ? "single" : "centered"}
           >
-            <Row>{this.state.leagues}</Row>
+            <Row>{this.state.leagues.html}</Row>
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
