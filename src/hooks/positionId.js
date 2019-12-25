@@ -14,7 +14,23 @@ export default function(lane, role, currentRank) {
     );
   };
 
-  if (lane === "BOTTOM" && role === "DUO_SUPPORT") {
+  if ((lane === "BOTTOM" && role === "DUO_SUPPORT") || "SOLO") {
     return img(tier, "Support");
+  }
+
+  if (lane === "BOTTOM" && role === "DUO_CARRY") {
+    return img(tier, "Bot");
+  }
+
+  if (lane === "TOP") {
+    return img(tier, "Top");
+  }
+
+  if (lane === "MID") {
+    return img(tier, "Mid");
+  }
+
+  if (lane === "JUNGLE") {
+    return img(tier, "Jungle");
   }
 }
