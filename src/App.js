@@ -8,6 +8,9 @@ import championIder from "./hooks/championId.js";
 import mapIder from "./hooks/mapId.js";
 import queueType from "./hooks/queueType.js";
 import queueId from "./hooks/queueId.js";
+import participantId from "./hooks/participantId.js";
+import positionId from "./hooks/positionId.js";
+import { element } from "prop-types";
 
 class App extends Component {
   constructor(props) {
@@ -41,7 +44,7 @@ class App extends Component {
     axios
       .post("/summonerSearch", { username: this.state.username })
       .then(response => {
-        console.log("/summonerSearch", response.data);
+        // console.log("/summonerSearch", response.data);
         this.setState({
           icon: response.data.profileIconId,
           level: response.data.summonerLevel,
@@ -65,21 +68,22 @@ class App extends Component {
           const responseMatches = responses[0].data;
           const responseLeagues = responses[1].data;
 
-          console.log(responseLeagues);
+          // console.log(responseLeagues);
           console.log(responseMatches);
           const leagues = [];
           const matchCalls = [];
 
-          responseMatches.matches.slice(0, 2).forEach((element, index) => {
+          responseMatches.matches.slice(0, 10).forEach((element, index) => {
             matchCalls.push(
               axios.post("/matchInfo", { matchId: element.gameId })
             );
           });
 
           let leaguesLength = 0;
+          let tier = null;
           responseLeagues.forEach((element, index) => {
             leaguesLength += 1;
-
+            tier = element.tier;
             leagues.push(
               <article key={index}>
                 <Col md="auto">
@@ -103,27 +107,26 @@ class App extends Component {
               </article>
             );
           });
-          console.log(leaguesLength);
+
           this.setState({
             matchList: responseMatches,
-            leagues: { html: leagues, leaguesLength }
+            leagues: { html: leagues, leaguesLength, tier }
           });
-          console.log("current match state", matchCalls);
-          console.log("current state", this.state);
+
           return axios.all(matchCalls);
         })
       )
       .then(
         axios.spread((...responses) => {
-          console.log("final", responses);
+          console.log("Match Specific", responses);
 
           const matches = [];
-          console.log("intial matches", this.state.matchList);
 
           responses.forEach((element, index) => {
             let timeSince = new Date(
               this.state.matchList.matches[index].timestamp
             );
+            console.log("each match", element);
             matches.push(
               <article key={index}>
                 <Card className="text-center">
@@ -132,25 +135,34 @@ class App extends Component {
                     <Card.Title>Special title treatment</Card.Title>
                     <Card.Text>
                       Lane: {this.state.matchList.matches[index].lane}
-                      Champion:{" "}
-                      {
-                        championIder(
-                          this.state.matchList.matches[index].champion
-                        ).id
-                      }
-                      <img
-                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                          championIder(
-                            this.state.matchList.matches[index].champion
-                          ).id
-                        }_0.jpg`)}
-                        className="champIcon"
-                        alt={
+                      <Col>
+                        <img
+                          src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                            championIder(
+                              this.state.matchList.matches[index].champion
+                            ).id
+                          }_0.jpg`)}
+                          className="champIcon"
+                          alt={
+                            championIder(
+                              this.state.matchList.matches[index].champion
+                            ).id
+                          }
+                        />
+
+                        <br />
+                        {
                           championIder(
                             this.state.matchList.matches[index].champion
                           ).id
                         }
-                      />
+                      </Col>
+                      RoleIcon:{" "}
+                      {positionId(
+                        this.state.matchList.matches[index].lane,
+                        this.state.matchList.matches[index].role,
+                        this.state.leagues.tier
+                      )}
                       Role: {this.state.matchList.matches[index].role}
                       Length:
                       {Math.floor(element.data.gameDuration / 60) +
@@ -161,7 +173,11 @@ class App extends Component {
                       Queue:{" "}
                       {queueId(this.state.matchList.matches[index].queue)}
                       mapId: {mapIder(element.data.mapId)}
-                      teams: dig into array
+                      teams:{" "}
+                      {participantId(
+                        this.state.matchList.matches[index].champion,
+                        element.data.participants
+                      )}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
@@ -175,7 +191,6 @@ class App extends Component {
           });
 
           this.setState({ matches });
-          console.log(matches, "after setstate");
         })
       )
       .catch(function(error) {
