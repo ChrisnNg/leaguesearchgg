@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Button, Card, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
@@ -41,6 +41,7 @@ class App extends Component {
   handleSubmit() {
     event.preventDefault();
 
+    this.setState({ loading: true });
     console.log("submission");
     axios
       .post("/summonerSearch", { username: this.state.username })
@@ -51,7 +52,8 @@ class App extends Component {
           level: response.data.summonerLevel,
           name: response.data.name,
           accountId: response.data.accountId,
-          summonerId: response.data.id
+          summonerId: response.data.id,
+          loading: false
         });
 
         const getMatchHistory = axios.post("/matchHistory", {
@@ -196,7 +198,7 @@ class App extends Component {
             );
           });
 
-          this.setState({ matches });
+          this.setState({ matches, loading: false });
         })
       )
       .catch(function(error) {
@@ -231,12 +233,22 @@ class App extends Component {
               We'll never share your information with anyone else.
             </Form.Text>
           </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            onClick={this.handleSubmit.bind(this)}
-          >
-            Submit
+          <Button type="submit" onClick={this.handleSubmit.bind(this)}>
+            {" "}
+            {!this.state.loading ? (
+              "Submit"
+            ) : (
+              <React.Fragment>
+                <Spinner
+                  as="span"
+                  animation="grow"
+                  size="sm"
+                  role="status"
+                  aria-hidden="true"
+                />{" "}
+                Loading...
+              </React.Fragment>
+            )}
           </Button>
           <section>
             {this.state.name ? this.loadIcon(this.state.icon) : null}
