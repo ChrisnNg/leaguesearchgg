@@ -23,6 +23,19 @@
   to { transform: rotate(360deg); }
 }
 
+/* Match-body */
+.Won{
+  background-color: rgb(204, 216, 252);
+}
+.Lost{
+  background-color: rgb(247, 238, 238);
+}
+
+.card-body:hover {
+  background-color: rgb(231, 228, 228);
+}
+/* Icons */
+
 .champIcon {
   height: 100px;
   width: 100px;
@@ -32,6 +45,7 @@
 .itemIcon {
   border-radius: 25%;
 }
+
 /* Leagues */
 
 .rankIcon {

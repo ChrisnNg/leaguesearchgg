@@ -137,13 +137,13 @@ class App extends Component {
             );
 
             matches.push(
-              <article key={index}>
+              <article className="matches" key={index}>
                 <Card className="text-center">
                   <Card.Header>
                     {mapIder(element.data.mapId)}{" "}
                     {queueId(this.state.matchList.matches[index].queue)}
                   </Card.Header>
-                  <Card.Body>
+                  <Card.Body className={playerInfo.stats.win ? "Won" : "Lost"}>
                     <Card.Title>
                       {playerInfo.stats.win ? "Won" : "Lost"}
                     </Card.Title>
