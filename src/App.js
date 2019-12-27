@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Button, Card, Row, Col, Spinner } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Card,
+  Row,
+  Col,
+  Spinner,
+  CardColumns
+} from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
@@ -76,7 +84,7 @@ class App extends Component {
           const leagues = [];
           const matchCalls = [];
 
-          responseMatches.matches.slice(0, 10).forEach((element, index) => {
+          responseMatches.matches.slice(0, 9).forEach((element, index) => {
             matchCalls.push(
               axios.post("/matchInfo", { matchId: element.gameId })
             );
@@ -138,7 +146,7 @@ class App extends Component {
 
             matches.push(
               <article className="matches" key={index}>
-                <Card className="text-center">
+                <Card md="auto" className="text-center">
                   <Card.Header>
                     {mapIder(element.data.mapId)}{" "}
                     {queueId(this.state.matchList.matches[index].queue)}
@@ -266,7 +274,9 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <div>{this.state.matches}</div>
+          <section className="text-center">
+            <CardColumns>{this.state.matches}</CardColumns>
+          </section>
         </Form>
       </div>
     );

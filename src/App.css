@@ -24,16 +24,23 @@
 }
 
 /* Match-body */
+.card-columns {
+margin: 15px;
+}
+
 .Won{
   background-color: rgb(204, 216, 252);
+  color: #3cbc8d
 }
 .Lost{
   background-color: rgb(247, 238, 238);
+  color: #e9422e;
 }
 
 .card-body:hover {
   background-color: rgb(231, 228, 228);
 }
+
 /* Icons */
 
 .champIcon {
