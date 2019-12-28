@@ -200,6 +200,9 @@ class App extends Component {
                         (playerInfo.stats.kills + playerInfo.stats.assists) /
                         playerInfo.stats.deaths
                       ).toFixed(2)}
+                      CS:{" "}
+                      {playerInfo.stats.totalMinionsKilled +
+                        playerInfo.stats.neutralMinionsKilled}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>
