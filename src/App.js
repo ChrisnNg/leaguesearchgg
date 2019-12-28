@@ -129,20 +129,19 @@ class App extends Component {
       )
       .then(
         axios.spread((...responses) => {
-          console.log("Match Specific", responses);
-
           const matches = [];
 
           responses.forEach((element, index) => {
             let timeSince = new Date(
               this.state.matchList.matches[index].timestamp
             );
-            console.log("each match", element);
+            console.log("each match info", element);
 
             let playerInfo = participantId(
               this.state.matchList.matches[index].champion,
               element.data.participants
             );
+            console.log(playerInfo);
 
             matches.push(
               <article className="matches" key={index}>
@@ -194,6 +193,13 @@ class App extends Component {
                         (element.data.gameDuration -
                           Math.floor(element.data.gameDuration / 60) * 60) +
                         " seconds "}
+                      {playerInfo.stats.kills} / {playerInfo.stats.deaths} /{" "}
+                      {playerInfo.stats.assists}
+                      KDA:{" "}
+                      {(
+                        (playerInfo.stats.kills + playerInfo.stats.assists) /
+                        playerInfo.stats.deaths
+                      ).toFixed(2)}
                     </Card.Text>
                     <Button variant="primary">Go somewhere</Button>
                   </Card.Body>

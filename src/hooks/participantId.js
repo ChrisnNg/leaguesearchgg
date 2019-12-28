@@ -1,7 +1,7 @@
 export default function(championId, participantArray) {
   for (const player of participantArray) {
     if (player.championId === championId) {
-      console.log("element from hook", player);
+      // console.log("element from participant id hook", player);
       return player;
     }
   }
