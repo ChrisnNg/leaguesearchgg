@@ -10,7 +10,7 @@ export default function(summonerId) {
             .charAt(0)
             .toUpperCase() + element.name.substr(1)}.png`)}
           className="itemIcon"
-          alt="Item0"
+          alt="summonerSpell"
         />
       );
     }

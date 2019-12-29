@@ -151,20 +151,27 @@ class App extends Component {
                 className={playerInfo.stats.win ? "Won" : "Lost"}
               >
                 <td>
-                  {mapIder(element.data.mapId)}{" "}
-                  {queueId(this.state.matchList.matches[index].queue)}
+                  {mapIder(element.data.mapId)}
+                  <br />
+                  <b>{queueId(this.state.matchList.matches[index].queue)}</b>
+
                   <br />
                   <TimeAgo time={timeSince} />
-                  <br />
+                  <hr />
                   {playerInfo.stats.win ? "Victory" : "Defeat"}
                   <br />
                   {Math.floor(element.data.gameDuration / 60) +
-                    " minutes and " +
+                    "m " +
                     (element.data.gameDuration -
                       Math.floor(element.data.gameDuration / 60) * 60) +
-                    " seconds "}
+                    "s"}
                 </td>
                 <td>
+                  {positionId(
+                    this.state.matchList.matches[index].lane,
+                    this.state.matchList.matches[index].role,
+                    this.state.leagues.tier
+                  )}
                   <img
                     src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
                       championIder(this.state.matchList.matches[index].champion)
@@ -178,7 +185,6 @@ class App extends Component {
                   />{" "}
                   {summonersId(playerInfo.spell1Id)}
                   {summonersId(playerInfo.spell2Id)}
-                  {itemsId(playerInfo.stats)}
                   <br />
                   {
                     championIder(this.state.matchList.matches[index].champion)
@@ -186,7 +192,8 @@ class App extends Component {
                   }
                 </td>
                 <td>
-                  {" "}
+                  Level: {playerInfo.stats.champLevel}
+                  <br />
                   {playerInfo.stats.kills} / {playerInfo.stats.deaths} /{" "}
                   {playerInfo.stats.assists}
                   <br />
@@ -200,14 +207,8 @@ class App extends Component {
                   {playerInfo.stats.totalMinionsKilled +
                     playerInfo.stats.neutralMinionsKilled}
                 </td>
-                <td>
-                  @
-                  {positionId(
-                    this.state.matchList.matches[index].lane,
-                    this.state.matchList.matches[index].role,
-                    this.state.leagues.tier
-                  )}
-                </td>
+                <td>Teams:</td>
+                <td>{itemsId(playerInfo.stats)}</td>
               </tr>
             );
           });

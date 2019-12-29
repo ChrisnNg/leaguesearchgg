@@ -51,6 +51,8 @@ margin: 15px;
 
 .itemIcon {
   border-radius: 25%;
+  height: 32px;
+  width: 32px;
 }
 
 /* Leagues */
@@ -66,4 +68,8 @@ margin: 15px;
 
 .single {
   margin: auto; max-width: 100px;
+}
+
+hr {
+  width: 40%;
 }
