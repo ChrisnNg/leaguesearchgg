@@ -21,6 +21,7 @@ import participantId from "./hooks/participantId.js";
 import positionId from "./hooks/positionId.js";
 import itemsId from "./hooks/itemsId.js";
 import summonersId from "./hooks/summonerId.js";
+import perkId from "./hooks/perkId.js";
 
 class App extends Component {
   constructor(props) {
@@ -186,6 +187,11 @@ class App extends Component {
                   {summonersId(playerInfo.spell1Id)}
                   {summonersId(playerInfo.spell2Id)}
                   <br />
+                  {perkId({
+                    primary: playerInfo.stats.perkPrimaryStyle,
+                    slot1: playerInfo.stats.perk0
+                  })}
+                  {perkId({ primary: playerInfo.stats.perkSubStyle })}
                   {
                     championIder(this.state.matchList.matches[index].champion)
                       .id
