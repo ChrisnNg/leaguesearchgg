@@ -23,6 +23,7 @@ export default function(playerStats) {
         className="itemIcon"
         alt="Item3"
       />
+      <br />
       <img
         src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item4}.png`)}
         className="itemIcon"
@@ -37,6 +38,11 @@ export default function(playerStats) {
         src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item6}.png`)}
         className="itemIcon"
         alt="Item6"
+      />
+      <img
+        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/item.png`)}
+        className="itemIcon"
+        alt="ItemIcon"
       />
     </div>
   );

@@ -8,7 +8,8 @@ import {
   Row,
   Col,
   Spinner,
-  CardColumns
+  CardColumns,
+  Table
 } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
@@ -144,74 +145,70 @@ class App extends Component {
             console.log(playerInfo);
 
             matches.push(
-              <article className="matches" key={index}>
-                <Card md="auto" className="text-center">
-                  <Card.Header>
-                    {mapIder(element.data.mapId)}{" "}
-                    {queueId(this.state.matchList.matches[index].queue)}
-                  </Card.Header>
-                  <Card.Body className={playerInfo.stats.win ? "Won" : "Lost"}>
-                    <Card.Title>
-                      {playerInfo.stats.win ? "Won" : "Lost"}
-                    </Card.Title>
-
-                    <Col>
-                      <img
-                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                          championIder(
-                            this.state.matchList.matches[index].champion
-                          ).id
-                        }_0.jpg`)}
-                        className="champIcon"
-                        alt={
-                          championIder(
-                            this.state.matchList.matches[index].champion
-                          ).id
-                        }
-                      />{" "}
-                      {summonersId(playerInfo.spell1Id)}
-                      {summonersId(playerInfo.spell2Id)}
-                      {itemsId(playerInfo.stats)}
-                      <br />
-                      {
-                        championIder(
-                          this.state.matchList.matches[index].champion
-                        ).id
-                      }
-                    </Col>
-                    <Col>
-                      {positionId(
-                        this.state.matchList.matches[index].lane,
-                        this.state.matchList.matches[index].role,
-                        this.state.leagues.tier
-                      )}
-                    </Col>
-                    <Card.Text>
-                      Game Length:{" "}
-                      {Math.floor(element.data.gameDuration / 60) +
-                        " minutes and " +
-                        (element.data.gameDuration -
-                          Math.floor(element.data.gameDuration / 60) * 60) +
-                        " seconds "}
-                      {playerInfo.stats.kills} / {playerInfo.stats.deaths} /{" "}
-                      {playerInfo.stats.assists}
-                      KDA:{" "}
-                      {(
-                        (playerInfo.stats.kills + playerInfo.stats.assists) /
-                        playerInfo.stats.deaths
-                      ).toFixed(2)}
-                      CS:{" "}
-                      {playerInfo.stats.totalMinionsKilled +
-                        playerInfo.stats.neutralMinionsKilled}
-                    </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
-                  </Card.Body>
-                  <Card.Footer className="text-muted">
-                    {" "}
-                    <TimeAgo time={timeSince} />
-                  </Card.Footer>
-                </Card>
-              </article>
+              <tr
+                className="matches"
+                key={index}
+                className={playerInfo.stats.win ? "Won" : "Lost"}
+              >
+                <td>
+                  {mapIder(element.data.mapId)}{" "}
+                  {queueId(this.state.matchList.matches[index].queue)}
+                  <br />
+                  <TimeAgo time={timeSince} />
+                  <br />
+                  {playerInfo.stats.win ? "Victory" : "Defeat"}
+                  <br />
+                  {Math.floor(element.data.gameDuration / 60) +
+                    " minutes and " +
+                    (element.data.gameDuration -
+                      Math.floor(element.data.gameDuration / 60) * 60) +
+                    " seconds "}
+                </td>
+                <td>
+                  <img
+                    src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                      championIder(this.state.matchList.matches[index].champion)
+                        .id
+                    }_0.jpg`)}
+                    className="champIcon"
+                    alt={
+                      championIder(this.state.matchList.matches[index].champion)
+                        .id
+                    }
+                  />{" "}
+                  {summonersId(playerInfo.spell1Id)}
+                  {summonersId(playerInfo.spell2Id)}
+                  {itemsId(playerInfo.stats)}
+                  <br />
+                  {
+                    championIder(this.state.matchList.matches[index].champion)
+                      .id
+                  }
+                </td>
+                <td>
+                  {" "}
+                  {playerInfo.stats.kills} / {playerInfo.stats.deaths} /{" "}
+                  {playerInfo.stats.assists}
+                  <br />
+                  KDA:{" "}
+                  {(
+                    (playerInfo.stats.kills + playerInfo.stats.assists) /
+                    playerInfo.stats.deaths
+                  ).toFixed(2)}
+                  <br />
+                  CS:{" "}
+                  {playerInfo.stats.totalMinionsKilled +
+                    playerInfo.stats.neutralMinionsKilled}
+                </td>
+                <td>
+                  @
+                  {positionId(
+                    this.state.matchList.matches[index].lane,
+                    this.state.matchList.matches[index].role,
+                    this.state.leagues.tier
+                  )}
+                </td>
+              </tr>
             );
           });
 
@@ -284,7 +281,9 @@ class App extends Component {
 
           {this.state.name ? <h4>Recent Games</h4> : null}
           <section className="text-center">
-            <CardColumns>{this.state.matches}</CardColumns>
+            <Table striped bordered hover>
+              <tbody>{this.state.matches}</tbody>
+            </Table>
           </section>
         </Form>
       </div>
