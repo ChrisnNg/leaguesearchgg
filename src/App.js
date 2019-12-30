@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import {
-  Form,
-  Button,
-  Card,
-  Row,
-  Col,
-  Spinner,
-  CardColumns,
-  Table
-} from "react-bootstrap";
+import { Form, Button, Row, Col, Spinner, Table } from "react-bootstrap";
 import axios from "axios";
 import TimeAgo from "./hooks/epochToTime.js";
 import championIder from "./hooks/championId.js";
@@ -22,6 +13,7 @@ import positionId from "./hooks/positionId.js";
 import itemsId from "./hooks/itemsId.js";
 import summonersId from "./hooks/summonerId.js";
 import perkId from "./hooks/perkId.js";
+import teamId from "./hooks/teamId.js";
 
 class App extends Component {
   constructor(props) {
@@ -38,10 +30,6 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.moreInfo = this.moreInfo.bind(this);
-  }
-  moreInfo(event) {
-    console.log(event);
   }
 
   handleChange(event) {
@@ -137,7 +125,7 @@ class App extends Component {
             let timeSince = new Date(
               this.state.matchList.matches[index].timestamp
             );
-            console.log("each match info", element);
+            console.log("each match info", element.data);
 
             let playerInfo = participantId(
               this.state.matchList.matches[index].champion,
@@ -146,11 +134,7 @@ class App extends Component {
             console.log(playerInfo);
 
             matches.push(
-              <tr
-                className="matches"
-                key={index}
-                className={playerInfo.stats.win ? "Won" : "Lost"}
-              >
+              <tr key={index} className={playerInfo.stats.win ? "Won" : "Lost"}>
                 <td>
                   {mapIder(element.data.mapId)}
                   <br />
@@ -213,8 +197,11 @@ class App extends Component {
                   {playerInfo.stats.totalMinionsKilled +
                     playerInfo.stats.neutralMinionsKilled}
                 </td>
-                <td>Teams:</td>
                 <td>{itemsId(playerInfo.stats)}</td>
+                <td>
+                  Teams:
+                  {teamId(element.data)}
+                </td>
               </tr>
             );
           });

@@ -24,9 +24,6 @@
 }
 
 /* Match-body */
-.card-columns {
-margin: 15px;
-}
 
 .Won{
   background-color: rgb(204, 216, 252);
@@ -37,9 +34,6 @@ margin: 15px;
   color: #e9422e;
 }
 
-.card-body:hover {
-  background-color: rgb(231, 228, 228);
-}
 
 /* Icons */
 
