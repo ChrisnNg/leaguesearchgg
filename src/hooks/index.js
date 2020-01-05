@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function(playerStats) {
+const itemsId = function(playerStats) {
   return (
     <div>
       <img
@@ -46,4 +46,6 @@ export default function(playerStats) {
       />
     </div>
   );
-}
+};
+
+export { itemsId };

@@ -10,7 +10,7 @@ import queueType from "./hooks/queueType.js";
 import queueId from "./hooks/queueId.js";
 import participantId from "./hooks/participantId.js";
 import positionId from "./hooks/positionId.js";
-import itemsId from "./hooks/itemsId.js";
+import { itemsId } from "./hooks/index";
 import summonersId from "./hooks/summonerId.js";
 import perkId from "./hooks/perkId.js";
 import teamId from "./hooks/teamId.js";
