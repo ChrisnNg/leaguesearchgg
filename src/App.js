@@ -3,17 +3,20 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Form, Button, Row, Col, Spinner, Table } from "react-bootstrap";
 import axios from "axios";
-import TimeAgo from "./hooks/epochToTime.js";
-import championIder from "./hooks/championId.js";
-import mapIder from "./hooks/mapId.js";
-import queueType from "./hooks/queueType.js";
-import queueId from "./hooks/queueId.js";
-import participantId from "./hooks/participantId.js";
-import positionId from "./hooks/positionId.js";
-import { itemsId } from "./hooks/index";
-import summonersId from "./hooks/summonerId.js";
-import perkId from "./hooks/perkId.js";
-import teamId from "./hooks/teamId.js";
+
+import {
+  itemsId,
+  TimeAgo,
+  championIder,
+  mapIder,
+  participantId,
+  perkId,
+  positionId,
+  queueId,
+  queueType,
+  summonersId,
+  teamId
+} from "./hooks/index";
 
 class App extends Component {
   constructor(props) {
