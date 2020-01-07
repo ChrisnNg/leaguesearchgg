@@ -318,23 +318,13 @@ const summonersId = function(summonerId) {
 };
 
 const teamId = function(matchData) {
-  // have two loops that each iterate through their respeoctive objects. use both to create
-  // a single object that contains both information needed
-  // afterwards, loop through that object to produce participant list
-
   let participants = [];
   let participantsObj = {};
-
-  console.log("within index", matchData);
-  // console.log(matchData.participants);
 
   for (const player of matchData.participantIdentities) {
     participantsObj[player.participantId] = {
       name: player.player.summonerName
     };
-
-    // console.log("array", player.participantId, player.player.summonerName);
-    // participants.push(<p>{player.player.summonerName}</p>);
   }
   for (const player of matchData.participants) {
     participantsObj[player.participantId]["championId"] = player.championId;
@@ -342,11 +332,17 @@ const teamId = function(matchData) {
   console.log(participantsObj);
 
   for (const player in participantsObj) {
-    // participants.push(player.name);
-    console.log(
-      "player",
-      participantsObj[player].name,
-      participantsObj[player].championId
+    participants.push(
+      <article>
+        {participantsObj[player].name},
+        <img
+          src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
+            championIder(participantsObj[player].championId).id
+          }_0.jpg`)}
+          className="champIcon"
+          alt={championIder(participantsObj[player].championId).id}
+        />
+      </article>
     );
   }
 
