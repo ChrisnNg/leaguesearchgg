@@ -318,19 +318,28 @@ const summonersId = function(summonerId) {
 };
 
 const teamId = function(matchData) {
-  let participants = [];
+  // have two loops that each iterate through their respeoctive objects. use both to create
+  // a single object that contains both information needed
+  // afterwards, loop through that object to produce participant list
 
+  let participants = [];
+  let participantsObj = {};
+
+  console.log("within index", matchData);
   // console.log(matchData.participants);
   let count = 0;
   for (const player of matchData.participantIdentities) {
+    participantsObj[count] = { name: player.player.summonerName };
     count += 1;
-    console.log("array", player.participantId, player.player.summonerName);
+    // console.log("array", player.participantId, player.player.summonerName);
     participants.push(<p>{player.player.summonerName}</p>);
     if (count === 5) {
-      console.log("other team");
+      // console.log("other team");
       participants.push(<br />);
     }
   }
+
+  console.log(participantsObj);
   return <article>{participants}</article>;
 };
 
