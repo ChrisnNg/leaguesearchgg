@@ -146,7 +146,7 @@ class App extends Component {
                   <br />
                   <TimeAgo time={timeSince} />
                   <hr />
-                  {playerInfo.stats.win ? "Victory" : "Defeat"}
+                  <b>{playerInfo.stats.win ? "Victory" : "Defeat"}</b>
                   <br />
                   {Math.floor(element.data.gameDuration / 60) +
                     "m " +

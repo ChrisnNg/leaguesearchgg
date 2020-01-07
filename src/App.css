@@ -49,6 +49,11 @@
   width: 32px;
 }
 
+.champIcon-mini {
+  height: 16px;
+  width: 16px;
+}
+
 /* Leagues */
 
 .rankIcon {

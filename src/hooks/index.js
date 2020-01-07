@@ -5,6 +5,7 @@ import map from "../assets/dragontail-9.24.2/9.24.2/data/en_US/map.json";
 import perks from "../assets/dragontail-9.24.2/9.24.2/data/en_US/runesReforged.json";
 import queue from "../assets/queues.json";
 import summoners from "../assets/summoners.json";
+import { Row, Col } from "react-bootstrap";
 
 const itemsId = function(playerStats) {
   return (
@@ -318,7 +319,8 @@ const summonersId = function(summonerId) {
 };
 
 const teamId = function(matchData) {
-  let participants = [];
+  let team1 = [];
+  let team2 = [];
   let participantsObj = {};
 
   for (const player of matchData.participantIdentities) {
@@ -332,21 +334,42 @@ const teamId = function(matchData) {
   console.log(participantsObj);
 
   for (const player in participantsObj) {
-    participants.push(
-      <article>
-        {participantsObj[player].name},
-        <img
-          src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
-            championIder(participantsObj[player].championId).id
-          }_0.jpg`)}
-          className="champIcon"
-          alt={championIder(participantsObj[player].championId).id}
-        />
-      </article>
-    );
+    console.log("player in index", player);
+    if (parseInt(player) < 6) {
+      team1.push(
+        <Row>
+          <img
+            src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
+              championIder(participantsObj[player].championId).id
+            }_0.jpg`)}
+            className="champIcon-mini"
+            alt={championIder(participantsObj[player].championId).id}
+          />
+          {participantsObj[player].name}
+        </Row>
+      );
+    } else {
+      team2.push(
+        <Row>
+          <img
+            src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
+              championIder(participantsObj[player].championId).id
+            }_0.jpg`)}
+            className="champIcon-mini"
+            alt={championIder(participantsObj[player].championId).id}
+          />
+          {participantsObj[player].name}
+        </Row>
+      );
+    }
   }
 
-  return <article>{participants}</article>;
+  return (
+    <Row>
+      <Col>{team1}</Col>
+      <Col>{team2}</Col>
+    </Row>
+  );
 };
 
 export {
