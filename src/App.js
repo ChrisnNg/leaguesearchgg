@@ -159,34 +159,49 @@ class App extends Component {
                     "s"}
                 </td>
                 <td>
-                  {positionId(
-                    this.state.matchList.matches[index].lane,
-                    this.state.matchList.matches[index].role,
-                    this.state.leagues.tier
-                  )}
-                  <img
-                    src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                      championIder(this.state.matchList.matches[index].champion)
-                        .id
-                    }_0.jpg`)}
-                    className="champIcon"
-                    alt={
-                      championIder(this.state.matchList.matches[index].champion)
-                        .id
-                    }
-                  />{" "}
-                  {summonersId(playerInfo.spell1Id)}
-                  {summonersId(playerInfo.spell2Id)}
-                  <br />
-                  {perkId({
-                    primary: playerInfo.stats.perkPrimaryStyle,
-                    slot1: playerInfo.stats.perk0
-                  })}
-                  {perkId({ primary: playerInfo.stats.perkSubStyle })}
-                  {
-                    championIder(this.state.matchList.matches[index].champion)
-                      .id
-                  }
+                  <Row>
+                    <Col>
+                      {positionId(
+                        this.state.matchList.matches[index].lane,
+                        this.state.matchList.matches[index].role,
+                        this.state.leagues.tier
+                      )}
+                    </Col>
+
+                    <Col>
+                      <img
+                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                          championIder(
+                            this.state.matchList.matches[index].champion
+                          ).id
+                        }_0.jpg`)}
+                        className="champIcon"
+                        alt={
+                          championIder(
+                            this.state.matchList.matches[index].champion
+                          ).id
+                        }
+                      />
+                      {
+                        championIder(
+                          this.state.matchList.matches[index].champion
+                        ).id
+                      }
+                    </Col>
+                    <Col>
+                      <Row>
+                        {summonersId(playerInfo.spell1Id)}
+                        {summonersId(playerInfo.spell2Id)}
+                      </Row>
+                      <Row>
+                        {perkId({
+                          primary: playerInfo.stats.perkPrimaryStyle,
+                          slot1: playerInfo.stats.perk0
+                        })}
+                        {perkId({ primary: playerInfo.stats.perkSubStyle })}
+                      </Row>
+                    </Col>
+                  </Row>
                 </td>
                 <td>
                   Level: {playerInfo.stats.champLevel}

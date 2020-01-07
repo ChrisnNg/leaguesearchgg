@@ -51,6 +51,9 @@
   border-radius: 50%;
 }
 
+.ItemsBracket {
+  min-width: 128px;
+}
 .itemIcon {
   border-radius: 25%;
   height: 32px;
@@ -61,6 +64,7 @@
   height: 16px;
   width: 16px;
 }
+
 
 /* Leagues */
 

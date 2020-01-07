@@ -9,49 +9,52 @@ import { Row, Col } from "react-bootstrap";
 
 const itemsId = function(playerStats) {
   return (
-    <div>
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item0}.png`)}
-        className="itemIcon"
-        alt="Item0"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item1}.png`)}
-        className="itemIcon"
-        alt="Item1"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item2}.png`)}
-        className="itemIcon"
-        alt="Item2"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item3}.png`)}
-        className="itemIcon"
-        alt="Item3"
-      />
-      <br />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item4}.png`)}
-        className="itemIcon"
-        alt="Item4"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item5}.png`)}
-        className="itemIcon"
-        alt="Item5"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item6}.png`)}
-        className="itemIcon"
-        alt="Item6"
-      />
-      <img
-        src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/item.png`)}
-        className="itemIcon"
-        alt="ItemIcon"
-      />
-    </div>
+    <Col className="ItemsBracket">
+      <Row>
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item0}.png`)}
+          className="itemIcon"
+          alt="Item0"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item1}.png`)}
+          className="itemIcon"
+          alt="Item1"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item2}.png`)}
+          className="itemIcon"
+          alt="Item2"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item3}.png`)}
+          className="itemIcon"
+          alt="Item3"
+        />
+      </Row>
+      <Row>
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item4}.png`)}
+          className="itemIcon"
+          alt="Item4"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item5}.png`)}
+          className="itemIcon"
+          alt="Item5"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item6}.png`)}
+          className="itemIcon"
+          alt="Item6"
+        />
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/item.png`)}
+          className="itemIcon"
+          alt="ItemIcon"
+        />
+      </Row>
+    </Col>
   );
 };
 
@@ -279,6 +282,9 @@ const positionId = function(lane, role, currentRank) {
   if (role === "DUO_SUPPORT" || role === "SOLO") {
     return img(tier, "Support");
   }
+  if (role === "DUO") {
+    return img(tier, "Bot");
+  }
 };
 
 const queueId = function(queueId) {
@@ -335,7 +341,7 @@ const teamId = function(matchData) {
   for (const player in participantsObj) {
     if (parseInt(player) < 6) {
       team1.push(
-        <Row>
+        <Row index={player}>
           <img
             src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
               championIder(participantsObj[player].championId).id
@@ -348,7 +354,7 @@ const teamId = function(matchData) {
       );
     } else {
       team2.push(
-        <Row>
+        <Row index={player}>
           <img
             src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
               championIder(participantsObj[player].championId).id
