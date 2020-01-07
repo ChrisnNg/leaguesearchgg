@@ -169,26 +169,32 @@ class App extends Component {
                     </Col>
 
                     <Col>
-                      <img
-                        src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                          championIder(
-                            this.state.matchList.matches[index].champion
-                          ).id
-                        }_0.jpg`)}
-                        className="champIcon"
-                        alt={
-                          championIder(
-                            this.state.matchList.matches[index].champion
-                          ).id
-                        }
-                      />
-                      {
-                        championIder(
-                          this.state.matchList.matches[index].champion
-                        ).id
-                      }
+                      <Row className="vertical-align">
+                        <img
+                          src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                            championIder(
+                              this.state.matchList.matches[index].champion
+                            ).id
+                          }_0.jpg`)}
+                          className="champIcon"
+                          alt={
+                            championIder(
+                              this.state.matchList.matches[index].champion
+                            ).id
+                          }
+                        />
+                      </Row>
+                      <Row className="text-center">
+                        <p>
+                          {
+                            championIder(
+                              this.state.matchList.matches[index].champion
+                            ).id
+                          }
+                        </p>
+                      </Row>
                     </Col>
-                    <Col>
+                    <Col className="vertical-align">
                       <Row>
                         {summonersId(playerInfo.spell1Id)}
                         {summonersId(playerInfo.spell2Id)}
@@ -301,7 +307,7 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <section className="text-center">
+          <section>
             <Table bordered>
               <tbody>{this.state.matches}</tbody>
             </Table>

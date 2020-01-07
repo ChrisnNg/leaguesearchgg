@@ -73,6 +73,12 @@
   width: 100px;
 }
 
+.text-center {
+  margin: 0 auto;
+  text-align: center;
+  flex: 1
+}
+
 .centered {
   margin: auto; max-width: 230px;
 }
@@ -83,4 +89,13 @@
 
 hr {
   width: 40%;
+}
+
+.vertical-align {
+  flex: 1;
+  vertical-align: middle;
+}
+
+p {
+  flex: 1
 }

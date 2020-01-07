@@ -369,7 +369,7 @@ const teamId = function(matchData) {
   }
 
   return (
-    <Row>
+    <Row className="text-center">
       <Col>{team1}</Col>
       <Col>{team2}</Col>
     </Row>
