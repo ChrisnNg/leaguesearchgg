@@ -231,9 +231,9 @@ class App extends Component {
                     playerInfo.stats.neutralMinionsKilled}
                 </td>
                 <td>{itemsId(playerInfo.stats)}</td>
-                <td>
+                <td className="td-team">
                   Teams:
-                  {teamId(element.data)}
+                  <div className="teams">{teamId(element.data)}</div>
                 </td>
               </tr>
             );
@@ -307,7 +307,7 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <section>
+          <section className="matchHistory text-center">
             <Table bordered>
               <tbody>{this.state.matches}</tbody>
             </Table>

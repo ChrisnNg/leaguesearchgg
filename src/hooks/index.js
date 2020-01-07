@@ -349,7 +349,7 @@ const teamId = function(matchData) {
             className="champIcon-mini"
             alt={championIder(participantsObj[player].championId).id}
           />
-          {participantsObj[player].name}
+          <span>{participantsObj[player].name}</span>
         </Row>
       );
     } else {
@@ -362,7 +362,7 @@ const teamId = function(matchData) {
             className="champIcon-mini"
             alt={championIder(participantsObj[player].championId).id}
           />
-          {participantsObj[player].name}
+          <span>{participantsObj[player].name}</span>
         </Row>
       );
     }

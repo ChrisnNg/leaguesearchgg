@@ -73,6 +73,7 @@
   width: 100px;
 }
 
+/* Rest */
 .text-center {
   margin: 0 auto;
   text-align: center;
@@ -98,4 +99,20 @@ hr {
 
 p {
   flex: 1
+}
+
+.teams {
+  position: relative;
+  left: 20px;
+}
+
+.td-team {
+  width: 246.25px;
+
+}
+
+.matchHistory {
+
+  width: 900px;
+  font-size: 11px;
 }
