@@ -146,7 +146,11 @@ class App extends Component {
                   <br />
                   <TimeAgo time={timeSince} />
                   <hr />
-                  <b>{playerInfo.stats.win ? "Victory" : "Defeat"}</b>
+                  <b
+                    className={playerInfo.stats.win ? "Won-Text" : "Lost-Text"}
+                  >
+                    {playerInfo.stats.win ? "Victory" : "Defeat"}
+                  </b>
                   <br />
                   {Math.floor(element.data.gameDuration / 60) +
                     "m " +
@@ -191,10 +195,15 @@ class App extends Component {
                   {playerInfo.stats.assists}
                   <br />
                   KDA:{" "}
-                  {(
-                    (playerInfo.stats.kills + playerInfo.stats.assists) /
-                    playerInfo.stats.deaths
-                  ).toFixed(2)}
+                  <b>
+                    {playerInfo.stats.deaths
+                      ? (
+                          (playerInfo.stats.kills + playerInfo.stats.assists) /
+                          playerInfo.stats.deaths
+                        ).toFixed(2)
+                      : "Perfect"}
+                  </b>{" "}
+                  KDA
                   <br />
                   CS:{" "}
                   {playerInfo.stats.totalMinionsKilled +
@@ -278,7 +287,7 @@ class App extends Component {
 
           {this.state.name ? <h4>Recent Games</h4> : null}
           <section className="text-center">
-            <Table striped bordered hover>
+            <Table bordered>
               <tbody>{this.state.matches}</tbody>
             </Table>
           </section>

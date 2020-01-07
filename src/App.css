@@ -26,12 +26,20 @@
 /* Match-body */
 
 .Won{
-  background-color: rgb(204, 216, 252);
-  color: #3cbc8d
+  background-color: #a3cfec;
+
+}
+
+.Won-Text{
+  color: #1a78ae
 }
 .Lost{
-  background-color: rgb(247, 238, 238);
-  color: #e9422e;
+  background-color: #e2b6b3;
+
+  
+}
+.Lost-Text{
+  color: #c6443e;
 }
 
 

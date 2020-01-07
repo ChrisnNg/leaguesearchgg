@@ -331,10 +331,8 @@ const teamId = function(matchData) {
   for (const player of matchData.participants) {
     participantsObj[player.participantId]["championId"] = player.championId;
   }
-  console.log(participantsObj);
 
   for (const player in participantsObj) {
-    console.log("player in index", player);
     if (parseInt(player) < 6) {
       team1.push(
         <Row>
