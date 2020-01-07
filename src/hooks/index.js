@@ -327,19 +327,29 @@ const teamId = function(matchData) {
 
   console.log("within index", matchData);
   // console.log(matchData.participants);
-  let count = 0;
+
   for (const player of matchData.participantIdentities) {
-    participantsObj[count] = { name: player.player.summonerName };
-    count += 1;
+    participantsObj[player.participantId] = {
+      name: player.player.summonerName
+    };
+
     // console.log("array", player.participantId, player.player.summonerName);
-    participants.push(<p>{player.player.summonerName}</p>);
-    if (count === 5) {
-      // console.log("other team");
-      participants.push(<br />);
-    }
+    // participants.push(<p>{player.player.summonerName}</p>);
+  }
+  for (const player of matchData.participants) {
+    participantsObj[player.participantId]["championId"] = player.championId;
+  }
+  console.log(participantsObj);
+
+  for (const player in participantsObj) {
+    // participants.push(player.name);
+    console.log(
+      "player",
+      participantsObj[player].name,
+      participantsObj[player].championId
+    );
   }
 
-  console.log(participantsObj);
   return <article>{participants}</article>;
 };
 
