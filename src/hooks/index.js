@@ -376,6 +376,23 @@ const teamId = function(matchData) {
   );
 };
 
+const Masteries = function(arrayOfObjects) {
+  const html = [];
+  let count = 0;
+  for (const mastery of arrayOfObjects) {
+    html.push(
+      <Col key={count}>
+        {mastery.championId}
+        {mastery.championLevel}
+        {mastery.Points}
+        {mastery.lastPlayTime}
+      </Col>
+    );
+    count += 1;
+  }
+  return html;
+};
+
 export {
   itemsId,
   TimeAgo,
@@ -387,5 +404,6 @@ export {
   queueId,
   queueType,
   summonersId,
-  teamId
+  teamId,
+  Masteries
 };

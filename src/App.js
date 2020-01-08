@@ -15,7 +15,8 @@ import {
   queueId,
   queueType,
   summonersId,
-  teamId
+  teamId,
+  Masteries
 } from "./hooks/index";
 
 class App extends Component {
@@ -28,7 +29,8 @@ class App extends Component {
       name: "",
       level: null,
       matches: [],
-      leagues: { html: [], length: 0 }
+      leagues: { html: [], length: 0 },
+      masteries: null
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -119,7 +121,8 @@ class App extends Component {
 
           this.setState({
             matchList: responseMatches,
-            leagues: { html: leagues, length: leaguesLength, tier }
+            leagues: { html: leagues, length: leaguesLength, tier },
+            masteries: responseMasteries
           });
 
           return axios.all(matchCalls);
@@ -317,11 +320,20 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <section className="matchHistory text-center">
-            <Table>
-              <tbody>{this.state.matches}</tbody>
-            </Table>
-          </section>
+          <Row>
+            <Col>
+              <section>
+                {this.state.masteries ? Masteries(this.state.masteries) : null}
+              </section>
+            </Col>
+            <Col>
+              <section className="matchHistory text-center">
+                <Table>
+                  <tbody>{this.state.matches}</tbody>
+                </Table>
+              </section>
+            </Col>
+          </Row>
         </Form>
       </div>
     );
