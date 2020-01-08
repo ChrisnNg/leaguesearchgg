@@ -101,6 +101,8 @@ p {
   flex: 1
 }
 
+/* Matches */
+
 .teams {
   position: relative;
   left: 20px;
@@ -112,7 +114,19 @@ p {
 }
 
 .matchHistory {
-
   width: 900px;
   font-size: 11px;
+}
+
+.table td, .table th {
+  vertical-align: middle !important;
+}
+
+.position {
+  position: absolute;
+  z-index: 1;
+  left: 65px;
+  top: 75px;
+  height: 25px;
+  width: 25px;
 }
