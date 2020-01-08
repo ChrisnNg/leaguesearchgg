@@ -228,7 +228,7 @@ const perkId = function(perkId) {
               return (
                 <img
                   src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
-                  className="itemIcon"
+                  className="perkIcon"
                   alt="summonerSpell"
                 />
               );
@@ -239,7 +239,7 @@ const perkId = function(perkId) {
       return (
         <img
           src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
-          className="itemIcon"
+          className="perkIcon"
           alt="summonerSpell"
         />
       );

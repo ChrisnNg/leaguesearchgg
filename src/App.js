@@ -159,7 +159,7 @@ class App extends Component {
                     "s"}
                 </td>
                 <td>
-                  <Row>
+                  <Row className="champ">
                     <Col className="empty">
                       {positionId(
                         this.state.matchList.matches[index].lane,
@@ -194,8 +194,8 @@ class App extends Component {
                         </p>
                       </Row>
                     </Col>
-                    <Col className="vertical-align">
-                      <Row>
+                    <Col>
+                      <Row className="perks-container">
                         {summonersId(playerInfo.spell1Id)}
                         {summonersId(playerInfo.spell2Id)}
                       </Row>

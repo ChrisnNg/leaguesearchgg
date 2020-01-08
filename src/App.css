@@ -61,6 +61,13 @@
   width: 32px;
 }
 
+.perkIcon {
+  border-radius: 50%;
+  height: 32px;
+  width: 32px;
+  position: relative;
+  bottom: 8px;
+}
 .champIcon-mini {
   height: 16px;
   width: 16px;
@@ -96,7 +103,7 @@ hr {
 
 .vertical-align {
   flex: 1;
-  vertical-align: middle;
+  vertical-align: middle !important;          ;
 }
 
 p {
@@ -136,4 +143,13 @@ p {
 
 .empty {
   padding: 0px !important;
+}
+
+.champ {
+  width: 205px;
+}
+
+.perks-container {
+  position: relative;
+  top: 45%;
 }
