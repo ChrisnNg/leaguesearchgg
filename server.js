@@ -81,6 +81,18 @@ app.post("/leagues", (req, res) => {
     });
 });
 
+app.post("/masteries", (req, res) => {
+  let summonerId = req.body.summonerId;
+
+  axios
+    .get(
+      `https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${summonerId}?api_key=${process.env.API_KEY}`
+    )
+    .then(response => {
+      res.send(response.data);
+    });
+});
+
 app.post("/matchInfo", (req, res) => {
   let matchId = req.body.matchId;
 

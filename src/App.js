@@ -62,18 +62,23 @@ class App extends Component {
           summonerId: this.state.summonerId
         });
         const getLeagues = axios.post("/leagues", {
-          accountId: this.state.accountId,
           summonerId: this.state.summonerId
         });
-        return axios.all([getMatchHistory, getLeagues]);
+        const getMasteries = axios.post("/masteries", {
+          summonerId: this.state.summonerId
+        });
+        return axios.all([getMatchHistory, getLeagues, getMasteries]);
       })
       .then(
         axios.spread((...responses) => {
           const responseMatches = responses[0].data;
           const responseLeagues = responses[1].data;
+          const responseMasteries = responses[2].data;
 
           // console.log(responseLeagues);
-          console.log(responseMatches);
+          // console.log(responseMatches);
+          console.log(responseMasteries);
+
           const leagues = [];
           const matchCalls = [];
 
