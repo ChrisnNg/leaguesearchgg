@@ -339,9 +339,9 @@ const teamId = function(matchData) {
   }
 
   for (const player in participantsObj) {
-    if (parseInt(player) < 6) {
+    if (parseInt(player, 10) < 6) {
       team1.push(
-        <Row index={player}>
+        <Row index={player.toString()}>
           <img
             src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
               championIder(participantsObj[player].championId).id
@@ -354,7 +354,7 @@ const teamId = function(matchData) {
       );
     } else {
       team2.push(
-        <Row index={player}>
+        <Row index={player.toString()}>
           <img
             src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
               championIder(participantsObj[player].championId).id

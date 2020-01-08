@@ -212,8 +212,11 @@ class App extends Component {
                 <td>
                   Level: {playerInfo.stats.champLevel}
                   <br />
-                  {playerInfo.stats.kills} / {playerInfo.stats.deaths} /{" "}
-                  {playerInfo.stats.assists}
+                  <b>
+                    {playerInfo.stats.kills} /{" "}
+                    <span className="Lost-Text">{playerInfo.stats.deaths}</span>{" "}
+                    / {playerInfo.stats.assists}
+                  </b>
                   <br />
                   KDA:{" "}
                   <b>
@@ -229,6 +232,8 @@ class App extends Component {
                   CS:{" "}
                   {playerInfo.stats.totalMinionsKilled +
                     playerInfo.stats.neutralMinionsKilled}
+                  <br />
+                  Vision Score: {playerInfo.stats.visionScore}
                 </td>
                 <td>{itemsId(playerInfo.stats)}</td>
                 <td className="td-team">
