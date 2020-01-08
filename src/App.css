@@ -143,6 +143,7 @@ p {
 .matchHistory {
   width: 900px;
   font-size: 11px;
+  display:inline-block
 }
 
 .table td, .table th {
@@ -182,8 +183,19 @@ p {
   padding-top: 10px !important;
 }
 
-.mastery {
-  min-width: 250px;
-  max-width: 250px;
+.mastery-container {
+  width: 500px;
 
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .mastery-container {
+    min-width: 250px;
+    max-width: 17%;
+    /* display:inline-block; */
+    float: right;
+    margin-top: 5px;
+    margin-right: 15%;
+  }
 }

@@ -175,55 +175,57 @@ class App extends Component {
                     "s"}
                 </td>
                 <td>
-                  <Row className="champ">
-                    <Col className="empty">
-                      {positionId(
-                        this.state.matchList.matches[index].lane,
-                        this.state.matchList.matches[index].role,
-                        this.state.leagues.tier
-                      )}
-                    </Col>
+                  <Container>
+                    <Row className="champ">
+                      <Col className="empty">
+                        {positionId(
+                          this.state.matchList.matches[index].lane,
+                          this.state.matchList.matches[index].role,
+                          this.state.leagues.tier
+                        )}
+                      </Col>
 
-                    <Col>
-                      <Row className="vertical-align padding-top">
-                        <img
-                          src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                            championIder(
-                              this.state.matchList.matches[index].champion
-                            ).id
-                          }_0.jpg`)}
-                          className="champIcon"
-                          alt={
-                            championIder(
-                              this.state.matchList.matches[index].champion
-                            ).id
-                          }
-                        />
-                      </Row>
-                      <Row className="text-center">
-                        <p>
-                          {
-                            championIder(
-                              this.state.matchList.matches[index].champion
-                            ).id
-                          }
-                        </p>
-                      </Row>
-                    </Col>
-                    <Col>
-                      <Row className="perks-container">
-                        {summonersId(playerInfo.spell1Id)}
-                        {summonersId(playerInfo.spell2Id)}
-                      </Row>
-                      <Row>
-                        {perkId({
-                          primary: playerInfo.stats.perkPrimaryStyle,
-                          slot1: playerInfo.stats.perk0
-                        })}
-                        {perkId({ primary: playerInfo.stats.perkSubStyle })}
-                      </Row>
-                    </Col>
-                  </Row>
+                      <Col>
+                        <Row className="vertical-align padding-top">
+                          <img
+                            src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                              championIder(
+                                this.state.matchList.matches[index].champion
+                              ).id
+                            }_0.jpg`)}
+                            className="champIcon"
+                            alt={
+                              championIder(
+                                this.state.matchList.matches[index].champion
+                              ).id
+                            }
+                          />
+                        </Row>
+                        <Row className="text-center">
+                          <p>
+                            {
+                              championIder(
+                                this.state.matchList.matches[index].champion
+                              ).id
+                            }
+                          </p>
+                        </Row>
+                      </Col>
+                      <Col>
+                        <Row className="perks-container">
+                          {summonersId(playerInfo.spell1Id)}
+                          {summonersId(playerInfo.spell2Id)}
+                        </Row>
+                        <Row>
+                          {perkId({
+                            primary: playerInfo.stats.perkPrimaryStyle,
+                            slot1: playerInfo.stats.perk0
+                          })}
+                          {perkId({ primary: playerInfo.stats.perkSubStyle })}
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Container>
                 </td>
                 <td>
                   Level: {playerInfo.stats.champLevel}
@@ -324,35 +326,30 @@ class App extends Component {
               this.state.leagues["length"] === 1 ? "single" : "centered"
             }
           >
-            <Row>{this.state.leagues.html}</Row>
+            <Container>
+              <Row>{this.state.leagues.html}</Row>
+            </Container>
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <Container>
-            <Row>
-              <Col>
-                <section>
-                  {this.state.masteries ? (
-                    <Table className="mastery" hover variant="dark">
-                      <thead>
-                        <tr>
-                          <th colSpan="2">Champion Mastery</th>
-                        </tr>
-                      </thead>
-                      <tbody>{Masteries(this.state.masteries)}</tbody>
-                    </Table>
-                  ) : null}
-                </section>
-              </Col>
-              <Col>
-                <section className="matchHistory text-center">
-                  <Table>
-                    <tbody>{this.state.matches}</tbody>
-                  </Table>
-                </section>
-              </Col>
-            </Row>
-          </Container>
+
+          <section className="matchHistory text-center">
+            <Table>
+              <tbody>{this.state.matches}</tbody>
+            </Table>
+          </section>
+          <section className="mastery-container text-left">
+            {this.state.masteries ? (
+              <Table hover variant="dark">
+                <thead>
+                  <tr>
+                    <th colSpan="2">Champion Mastery</th>
+                  </tr>
+                </thead>
+                <tbody>{Masteries(this.state.masteries)}</tbody>
+              </Table>
+            ) : null}
+          </section>
         </Form>
       </div>
     );
