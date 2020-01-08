@@ -381,24 +381,28 @@ const Masteries = function(arrayOfObjects) {
   let count = 0;
   for (const mastery of arrayOfObjects) {
     html.push(
-      <Col key={count}>
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/champion/${
-            championIder(mastery.championId).id
-          }.png`)}
-          className="champIcon-mastery"
-          alt={championIder(mastery.championId).id}
-        />
-        Level: {mastery.championLevel}
-        <br />
-        Mastery Points: {mastery.championPoints}
-        <br />
-        Last played:
-        <TimeAgo time={mastery.lastPlayTime} />
-      </Col>
+      <tr className="mastery" key={count}>
+        <td>
+          <img
+            src={require(`../assets/dragontail-9.24.2/9.24.2/img/champion/${
+              championIder(mastery.championId).id
+            }.png`)}
+            className="champIcon-mastery"
+            alt={championIder(mastery.championId).id}
+          />
+        </td>
+        <td>
+          <Row>Level: {mastery.championLevel}</Row>
+          <Row>Mastery Points: {mastery.championPoints}</Row>
+          <Row>
+            Last played:
+            <TimeAgo time={mastery.lastPlayTime} />
+          </Row>
+        </td>
+      </tr>
     );
     count += 1;
-    if (count === 10) {
+    if (count === 11) {
       break;
     }
   }

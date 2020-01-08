@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Form, Button, Row, Col, Spinner, Table } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Row,
+  Col,
+  Spinner,
+  Table,
+  Container
+} from "react-bootstrap";
 import axios from "axios";
 
 import {
@@ -320,20 +328,31 @@ class App extends Component {
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
-          <Row>
-            <Col>
-              <section>
-                {this.state.masteries ? Masteries(this.state.masteries) : null}
-              </section>
-            </Col>
-            <Col>
-              <section className="matchHistory text-center">
-                <Table>
-                  <tbody>{this.state.matches}</tbody>
-                </Table>
-              </section>
-            </Col>
-          </Row>
+          <Container>
+            <Row>
+              <Col>
+                <section>
+                  {this.state.masteries ? (
+                    <Table className="mastery" hover variant="dark">
+                      <thead>
+                        <tr>
+                          <th colSpan="2">Champion Mastery</th>
+                        </tr>
+                      </thead>
+                      <tbody>{Masteries(this.state.masteries)}</tbody>
+                    </Table>
+                  ) : null}
+                </section>
+              </Col>
+              <Col>
+                <section className="matchHistory text-center">
+                  <Table>
+                    <tbody>{this.state.matches}</tbody>
+                  </Table>
+                </section>
+              </Col>
+            </Row>
+          </Container>
         </Form>
       </div>
     );
