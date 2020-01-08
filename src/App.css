@@ -56,6 +56,12 @@
   min-width: 128px;
 }
 .itemIcon {
+  height: 32px;
+  width: 32px;
+  margin: 1px;
+}
+
+.summonerIcon {
   border-radius: 25%;
   height: 32px;
   width: 32px;
@@ -134,20 +140,21 @@ p {
 }
 
 .table-bordered td, .table-bordered th {
-  padding-top: 6px !important;
+  padding-top: 0px !important;
   padding-bottom: 0px !important;
 }
 
 .position {
   position: absolute;
   z-index: 1;
-  left: 38px;
-  top: 75px;
+  left: 45px;
+  top: 90px;
   height: 25px;
   width: 25px;
 }
 
 .empty {
+  padding-top: 6px !important;
   padding: 0px !important;
 }
 
@@ -158,4 +165,8 @@ p {
 .perks-container {
   position: relative;
   top: 45%;
+}
+
+.padding-top {
+  padding-top: 10px !important;
 }

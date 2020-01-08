@@ -169,7 +169,7 @@ class App extends Component {
                     </Col>
 
                     <Col>
-                      <Row className="vertical-align">
+                      <Row className="vertical-align padding-top">
                         <img
                           src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
                             championIder(
