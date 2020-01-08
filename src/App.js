@@ -160,7 +160,7 @@ class App extends Component {
                 </td>
                 <td>
                   <Row>
-                    <Col>
+                    <Col className="empty">
                       {positionId(
                         this.state.matchList.matches[index].lane,
                         this.state.matchList.matches[index].role,
