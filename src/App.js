@@ -313,7 +313,7 @@ class App extends Component {
 
           {this.state.name ? <h4>Recent Games</h4> : null}
           <section className="matchHistory text-center">
-            <Table bordered>
+            <Table>
               <tbody>{this.state.matches}</tbody>
             </Table>
           </section>
