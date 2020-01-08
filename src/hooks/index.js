@@ -386,16 +386,21 @@ const Masteries = function(arrayOfObjects) {
           src={require(`../assets/dragontail-9.24.2/9.24.2/img/champion/${
             championIder(mastery.championId).id
           }.png`)}
-          className="champIcon"
+          className="champIcon-mastery"
           alt={championIder(mastery.championId).id}
         />
-
-        {mastery.championLevel}
-        {mastery.Points}
-        {mastery.lastPlayTime}
+        Level: {mastery.championLevel}
+        <br />
+        Mastery Points: {mastery.championPoints}
+        <br />
+        Last played:
+        <TimeAgo time={mastery.lastPlayTime} />
       </Col>
     );
     count += 1;
+    if (count === 10) {
+      break;
+    }
   }
   return html;
 };

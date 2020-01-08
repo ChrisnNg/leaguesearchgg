@@ -83,12 +83,15 @@
   bottom: 8px;
 }
 .champIcon-mini {
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
   margin: 2px;
 }
 
-
+.champIcon-mastery {
+  height: 32px;
+  width: 32px;
+}
 /* Leagues */
 
 .rankIcon {
