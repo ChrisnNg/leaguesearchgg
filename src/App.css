@@ -130,6 +130,12 @@ p {
 
 .table td, .table th {
   vertical-align: middle !important;
+  
+}
+
+.table-bordered td, .table-bordered th {
+  padding-top: 6px !important;
+  padding-bottom: 0px !important;
 }
 
 .position {
