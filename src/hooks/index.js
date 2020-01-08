@@ -381,7 +381,7 @@ const Masteries = function(arrayOfObjects) {
   let count = 0;
   for (const mastery of arrayOfObjects) {
     html.push(
-      <tr className="mastery" key={count}>
+      <tr key={count}>
         <td>
           <img
             src={require(`../assets/dragontail-9.24.2/9.24.2/img/champion/${

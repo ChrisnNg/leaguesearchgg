@@ -89,8 +89,8 @@
 }
 
 .champIcon-mastery {
-  height: 32px;
-  width: 32px;
+  height: 64px;
+  width: 64px;
 }
 /* Leagues */
 
@@ -184,7 +184,7 @@ p {
 }
 
 .mastery-container {
-  width: 500px;
+  width: 100%;
 
 }
 

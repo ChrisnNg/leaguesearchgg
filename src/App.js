@@ -343,7 +343,9 @@ class App extends Component {
               <Table hover variant="dark">
                 <thead>
                   <tr>
-                    <th colSpan="2">Champion Mastery</th>
+                    <th colSpan="2" className="text-center">
+                      Champion Mastery
+                    </th>
                   </tr>
                 </thead>
                 <tbody>{Masteries(this.state.masteries)}</tbody>
