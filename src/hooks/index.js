@@ -382,7 +382,14 @@ const Masteries = function(arrayOfObjects) {
   for (const mastery of arrayOfObjects) {
     html.push(
       <Col key={count}>
-        {mastery.championId}
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/champion/${
+            championIder(mastery.championId).id
+          }.png`)}
+          className="champIcon"
+          alt={championIder(mastery.championId).id}
+        />
+
         {mastery.championLevel}
         {mastery.Points}
         {mastery.lastPlayTime}
