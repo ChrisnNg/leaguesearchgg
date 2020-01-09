@@ -15,7 +15,9 @@
     "react-fade-in": "^0.1.7",
     "react-scripts": "0.9.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv-webpack": "^1.7.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "local": "nodemon server.js",

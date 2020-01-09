@@ -60,7 +60,7 @@ class App extends Component {
     event.preventDefault();
 
     this.setState({ loading: true });
-    console.log("submission");
+    console.log("submission", baseUrl);
     axios
       .post(`${baseUrl}/summonerSearch`, {
         username: this.state.username
