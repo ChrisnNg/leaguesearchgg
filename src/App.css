@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  background-image: url("assets/3840x2160-final-boss-veigar-lol-splash-art-league-of-legends_1574097790.jpg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
 }
 
 .App-logo {
@@ -32,6 +36,13 @@
   border-width: 2px;
 }
 
+.Won:hover{
+  box-shadow: 10px 10px 5px black;
+}
+
+.Lost:hover{
+  box-shadow: 10px 10px 5px black;
+}
 .Won-Text{
   color: #1a78ae
 }
@@ -199,3 +210,4 @@ p {
     margin-right: 15%;
   }
 }
+
