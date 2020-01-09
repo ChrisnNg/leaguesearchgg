@@ -4,7 +4,7 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
-  height: 2450px;
+  height: 2650px;
   width: 100%;
 }
 
@@ -206,6 +206,10 @@ p {
   margin-bottom: 50px;
   max-width: 250px;
   max-height: 250px;
+}
+
+.summoner {
+  color: aliceblue;
 }
 
 @media only screen and (min-width: 1024px) {

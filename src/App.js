@@ -8,8 +8,7 @@ import {
   Col,
   Spinner,
   Table,
-  Container,
-  Fade
+  Container
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -283,7 +282,7 @@ class App extends Component {
         </div>
         <Form>
           <Form.Group controlId="formUsername">
-            <Form.Label>Summoner Name</Form.Label>
+            <Form.Label className="summoner">Summoner Name</Form.Label>
             <Form.Control
               type="search"
               placeholder="Enter Summoner Name"
@@ -312,7 +311,7 @@ class App extends Component {
           </Button>
 
           {this.state.name && this.state.matches ? (
-            <section>
+            <section className="summoner">
               <FadeIn>
                 {loadIcon(this.state.icon)}
                 <br />
@@ -325,7 +324,9 @@ class App extends Component {
 
           <section
             className={
-              this.state.leagues["length"] === 1 ? "single" : "centered"
+              this.state.leagues["length"] === 1
+                ? "single summoner"
+                : "centered summoner"
             }
           >
             {this.state.leagues.html && this.state.matches ? (
@@ -335,7 +336,9 @@ class App extends Component {
             ) : null}
           </section>
 
-          {this.state.name ? <h4>Recent Games</h4> : null}
+          {this.state.matches ? (
+            <h4 className="summoner">Recent Games</h4>
+          ) : null}
 
           <section className="matchHistory text-center">
             {this.state.matches ? (
