@@ -12,6 +12,8 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
+require("dotenv").config();
+
 import {
   itemsId,
   TimeAgo,
@@ -30,7 +32,7 @@ import {
 
 import FadeIn from "react-fade-in";
 
-const baseUrl = process.env.backendUrl || "";
+const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
 
 class App extends Component {
   constructor(props) {
@@ -60,7 +62,9 @@ class App extends Component {
     this.setState({ loading: true });
     console.log("submission");
     axios
-      .post(`${baseUrl}/summonerSearch`, { username: this.state.username })
+      .post(`${baseUrl}/summonerSearch`, {
+        username: this.state.username
+      })
       .then(response => {
         // console.log("/summonerSearch", response.data);
         this.setState({
