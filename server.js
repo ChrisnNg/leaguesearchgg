@@ -30,7 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.json({ test: true });
+  res.send("req recieved");
+  // res.json({ test: true });
 });
 
 app.post("/summonerSearch", (req, res) => {
@@ -108,5 +109,5 @@ app.post("/matchInfo", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`League of Legends Backend listening on port ${PORT}`);
 });

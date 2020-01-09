@@ -30,6 +30,8 @@ import {
 
 import FadeIn from "react-fade-in";
 
+const baseUrl = process.env.backendUrl || "";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +60,7 @@ class App extends Component {
     this.setState({ loading: true });
     console.log("submission");
     axios
-      .post("/summonerSearch", { username: this.state.username })
+      .post(`${baseUrl}/summonerSearch`, { username: this.state.username })
       .then(response => {
         // console.log("/summonerSearch", response.data);
         this.setState({
@@ -70,14 +72,14 @@ class App extends Component {
           loading: false
         });
 
-        const getMatchHistory = axios.post("/matchHistory", {
+        const getMatchHistory = axios.post(`${baseUrl}/matchHistory`, {
           accountId: this.state.accountId,
           summonerId: this.state.summonerId
         });
-        const getLeagues = axios.post("/leagues", {
+        const getLeagues = axios.post(`${baseUrl}/leagues`, {
           summonerId: this.state.summonerId
         });
-        const getMasteries = axios.post("/masteries", {
+        const getMasteries = axios.post(`${baseUrl}/masteries`, {
           summonerId: this.state.summonerId
         });
         return axios.all([getMatchHistory, getLeagues, getMasteries]);
@@ -97,7 +99,7 @@ class App extends Component {
 
           responseMatches.matches.slice(0, 9).forEach((element, index) => {
             matchCalls.push(
-              axios.post("/matchInfo", { matchId: element.gameId })
+              axios.post(`${baseUrl}/matchInfo`, { matchId: element.gameId })
             );
           });
 
