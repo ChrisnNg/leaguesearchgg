@@ -8,7 +8,8 @@ import {
   Col,
   Spinner,
   Table,
-  Container
+  Container,
+  Fade
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -27,6 +28,8 @@ import {
   Masteries,
   loadIcon
 } from "./hooks/index";
+
+import FadeIn from "react-fade-in";
 
 class App extends Component {
   constructor(props) {
@@ -307,41 +310,57 @@ class App extends Component {
               </React.Fragment>
             )}
           </Button>
-          <section>
-            {this.state.name ? loadIcon(this.state.icon) : null}
-            <br />
-            {this.state.name} <br />
-            {this.state.level ? `Level: ${this.state.level}` : null}
-          </section>
+
+          {this.state.name && this.state.matches ? (
+            <section>
+              <FadeIn>
+                {loadIcon(this.state.icon)}
+                <br />
+                {this.state.name ? this.state.name : null}
+                <br />
+                {this.state.level ? `Level: ${this.state.level}` : null}
+              </FadeIn>
+            </section>
+          ) : null}
 
           <section
             className={
               this.state.leagues["length"] === 1 ? "single" : "centered"
             }
           >
-            <Row>{this.state.leagues.html}</Row>
+            {this.state.leagues.html && this.state.matches ? (
+              <FadeIn>
+                <Row>{this.state.leagues.html}</Row>
+              </FadeIn>
+            ) : null}
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
 
           <section className="matchHistory text-center">
-            <Table>
-              <tbody>{this.state.matches}</tbody>
-            </Table>
+            {this.state.matches ? (
+              <FadeIn>
+                <Table>
+                  <tbody>{this.state.matches}</tbody>
+                </Table>
+              </FadeIn>
+            ) : null}
           </section>
 
           <section className="mastery-container text-left">
             {this.state.masteries && this.state.matches ? (
-              <Table hover variant="dark">
-                <thead>
-                  <tr>
-                    <th colSpan="2" className="text-center">
-                      Champion Mastery
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>{Masteries(this.state.masteries)}</tbody>
-              </Table>
+              <FadeIn>
+                <Table hover variant="dark">
+                  <thead>
+                    <tr>
+                      <th colSpan="2" className="text-center">
+                        Champion Mastery
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>{Masteries(this.state.masteries)}</tbody>
+                </Table>
+              </FadeIn>
             ) : null}
           </section>
         </Form>

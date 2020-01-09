@@ -414,7 +414,7 @@ const loadIcon = function(profileiconid) {
     <img
       src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
       alt="Summoner-Pfp"
-      className="pfp"
+      className="Summoner-Pfp"
     />
   );
 };
