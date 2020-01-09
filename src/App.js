@@ -12,8 +12,6 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-require("dotenv").config();
-
 import {
   itemsId,
   TimeAgo,
