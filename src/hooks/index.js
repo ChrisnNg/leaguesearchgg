@@ -409,6 +409,16 @@ const Masteries = function(arrayOfObjects) {
   return html;
 };
 
+const loadIcon = function(profileiconid) {
+  return (
+    <img
+      src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
+      alt="Summoner-Pfp"
+      className="pfp"
+    />
+  );
+};
+
 export {
   itemsId,
   TimeAgo,
@@ -421,5 +431,6 @@ export {
   queueType,
   summonersId,
   teamId,
-  Masteries
+  Masteries,
+  loadIcon
 };

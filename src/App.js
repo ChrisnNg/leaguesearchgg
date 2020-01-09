@@ -24,7 +24,8 @@ import {
   queueType,
   summonersId,
   teamId,
-  Masteries
+  Masteries,
+  loadIcon
 } from "./hooks/index";
 
 class App extends Component {
@@ -36,7 +37,7 @@ class App extends Component {
       icon: null,
       name: "",
       level: null,
-      matches: [],
+      matches: null,
       leagues: { html: [], length: 0 },
       masteries: null
     };
@@ -270,14 +271,6 @@ class App extends Component {
       });
   }
 
-  loadIcon(profileiconid) {
-    return (
-      <img
-        src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
-        alt="new"
-      />
-    );
-  }
   render() {
     return (
       <div className="App">
@@ -315,7 +308,7 @@ class App extends Component {
             )}
           </Button>
           <section>
-            {this.state.name ? this.loadIcon(this.state.icon) : null}
+            {this.state.name ? loadIcon(this.state.icon) : null}
             <br />
             {this.state.name} <br />
             {this.state.level ? `Level: ${this.state.level}` : null}
@@ -326,9 +319,7 @@ class App extends Component {
               this.state.leagues["length"] === 1 ? "single" : "centered"
             }
           >
-            <Container>
-              <Row>{this.state.leagues.html}</Row>
-            </Container>
+            <Row>{this.state.leagues.html}</Row>
           </section>
 
           {this.state.name ? <h4>Recent Games</h4> : null}
@@ -338,8 +329,9 @@ class App extends Component {
               <tbody>{this.state.matches}</tbody>
             </Table>
           </section>
+
           <section className="mastery-container text-left">
-            {this.state.masteries ? (
+            {this.state.masteries && this.state.matches ? (
               <Table hover variant="dark">
                 <thead>
                   <tr>

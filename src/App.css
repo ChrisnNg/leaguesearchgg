@@ -4,6 +4,8 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
+  height: 2300px;
+  width: 100%;
 }
 
 .App-logo {
@@ -199,6 +201,10 @@ p {
 
 }
 
+.SummonerPfp {
+  max-width: 250px;
+  max-height: 250px;
+}
 
 @media only screen and (min-width: 1024px) {
   .mastery-container {
