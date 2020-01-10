@@ -22,3 +22,8 @@ and start the front-end with
 ```
 npm start
 ```
+
+
+### Futher Notes
+
+The backend can be hosted seperately. To do this, simply host the backend and give your `.env` `REACT_APP_BACKEND_URL` the url to the hosted domain.
