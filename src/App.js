@@ -34,7 +34,8 @@ import {
   Route,
   Link,
   useParams,
-  withRouter
+  withRouter,
+  useHistory
 } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
@@ -66,8 +67,14 @@ class App extends Component {
   handleSubmit() {
     event.preventDefault();
 
-    this.setState({ loading: true });
-    console.log("submission", baseUrl);
+    this.props.location
+      ? this.setState({
+          username: this.props.location.pathname.substr(1),
+          loading: true
+        })
+      : this.setState({ loading: true });
+
+    console.log("submission", this.props.location.pathname.substr(1));
     axios
       .post(`${baseUrl}/summonerSearch`, {
         username: this.state.username
@@ -274,9 +281,7 @@ class App extends Component {
                 <td>{itemsId(playerInfo.stats)}</td>
                 <td className="td-team">
                   Teams:
-                  <Router>
-                    <div className="teams">{teamId(element.data)}</div>
-                  </Router>
+                  <div className="teams">{teamId(element.data)}</div>
                 </td>
               </tr>
             );
@@ -391,4 +396,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
