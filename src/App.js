@@ -28,6 +28,15 @@ import {
   loadIcon
 } from "./hooks/index";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useParams,
+  withRouter
+} from "react-router-dom";
+
 import FadeIn from "react-fade-in";
 
 const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
@@ -185,11 +194,13 @@ class App extends Component {
                   <Container>
                     <Row className="champ">
                       <Col className="empty">
-                        {positionId(
-                          this.state.matchList.matches[index].lane,
-                          this.state.matchList.matches[index].role,
-                          this.state.leagues.tier
-                        )}
+                        {this.state.leagues.tier
+                          ? positionId(
+                              this.state.matchList.matches[index].lane,
+                              this.state.matchList.matches[index].role,
+                              this.state.leagues.tier
+                            )
+                          : null}
                       </Col>
 
                       <Col>
@@ -263,7 +274,9 @@ class App extends Component {
                 <td>{itemsId(playerInfo.stats)}</td>
                 <td className="td-team">
                   Teams:
-                  <div className="teams">{teamId(element.data)}</div>
+                  <Router>
+                    <div className="teams">{teamId(element.data)}</div>
+                  </Router>
                 </td>
               </tr>
             );
@@ -282,7 +295,9 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>
+            Welcome to {this.props ? console.log(this.props.location) : null}}
+          </h2>
         </div>
         <Form>
           <Form.Group controlId="formUsername">
