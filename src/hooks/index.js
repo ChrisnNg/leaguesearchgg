@@ -357,7 +357,15 @@ const teamId = function(matchData) {
             className="champIcon-mini"
             alt={championIder(participantsObj[player].championId).id}
           />
-          <span>{participantsObj[player].name}</span>
+          <Link
+            to={{
+              pathname: `/${participantsObj[player].name}`,
+              state: { summonerName: participantsObj[player].name }
+            }}
+            className="team-click"
+          >
+            {participantsObj[player].name}
+          </Link>
         </Row>
       );
     } else {
