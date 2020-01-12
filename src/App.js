@@ -67,8 +67,10 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     console.log("compoent recieved new props");
     console.log(nextProps);
-    if (nextProps.location.state.refresh) {
-      window.location.reload();
+    if (nextProps.location.state) {
+      if (nextProps.location.state.refresh) {
+        window.location.reload();
+      }
     }
   }
 
