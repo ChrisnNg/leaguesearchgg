@@ -475,10 +475,10 @@ const loadIcon = function(profileiconid, level) {
         alt="Summoner-Pfp"
         className="Summoner-Pfp"
       />
-
+      <br />
       <img
         src={require(`../assets/summoner-icon/${summonerLevel}.png`)}
-        className="champIcon"
+        className="Summoner-Icon"
         alt={summonerLevel}
       />
     </React.Fragment>

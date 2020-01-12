@@ -365,10 +365,11 @@ class App extends Component {
               <FadeIn>
                 {loadIcon(this.state.icon, this.state.level)}
 
-                <br />
+                {this.state.level ? (
+                  <span className="level-text">Level: {this.state.level}</span>
+                ) : null}
                 {this.state.name ? this.state.name : null}
                 <br />
-                {this.state.level ? `Level: ${this.state.level}` : null}
               </FadeIn>
             </section>
           ) : null}
