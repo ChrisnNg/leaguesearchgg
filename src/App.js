@@ -327,7 +327,7 @@ class App extends Component {
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>
-            Welcome to {this.props ? console.log(this.props.location) : null}}
+            Welcome to {this.props ? console.log(this.props.location) : null}
           </h2>
         </div>
         <Form>
@@ -368,7 +368,10 @@ class App extends Component {
                 {this.state.level ? (
                   <span className="level-text">Level: {this.state.level}</span>
                 ) : null}
-                {this.state.name ? this.state.name : null}
+
+                {this.state.name ? (
+                  <h3 className="name">{this.state.name}</h3>
+                ) : null}
                 <br />
               </FadeIn>
             </section>

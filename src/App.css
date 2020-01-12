@@ -201,6 +201,7 @@ p {
 
 }
 
+/* Summoner */
 .Summoner-Pfp {
   margin-top: 100px;
   max-width: 250px;
@@ -232,6 +233,11 @@ p {
 
 .summoner {
   color: aliceblue;
+}
+
+.name {
+  margin-top: -25px;
+  margin-bottom: 35px;
 }
 
 @media only screen and (min-width: 1024px) {
