@@ -108,8 +108,14 @@
 /* Leagues */
 
 .rankIcon {
+  margin-top: -50px;
+  margin-bottom: 20px;
   height: 100px;
   width: 100px;
+}
+
+.summoner-stats {
+  margin-bottom: 25px;
 }
 
 /* Rest */

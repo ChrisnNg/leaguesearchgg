@@ -5,15 +5,9 @@ import map from "../assets/dragontail-9.24.2/9.24.2/data/en_US/map.json";
 import perks from "../assets/dragontail-9.24.2/9.24.2/data/en_US/runesReforged.json";
 import queue from "../assets/queues.json";
 import summoners from "../assets/summoners.json";
-import { Row, Col, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const itemsId = function(playerStats) {
   return (

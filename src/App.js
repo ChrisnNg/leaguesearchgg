@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import {
@@ -28,16 +28,7 @@ import {
   loadIcon
 } from "./hooks/index";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useParams,
-  withRouter,
-  useHistory,
-  Redirect
-} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
 
@@ -129,7 +120,7 @@ class App extends Component {
             leaguesLength += 1;
             tier = element.tier;
             leagues.push(
-              <article key={index}>
+              <article className="summoner-stats" key={index}>
                 <Col md="auto">
                   <img
                     src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
@@ -297,7 +288,7 @@ class App extends Component {
       });
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     console.log("compoent recieved new props");
     console.log(nextProps);
     if (nextProps.location.state) {
