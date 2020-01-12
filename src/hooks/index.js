@@ -373,7 +373,7 @@ const teamId = function(matchData) {
           <Link
             to={{
               pathname: `/${participantsObj[player].name}`,
-              state: { refresh: true }
+              state: { summonerName: participantsObj[player].name }
             }}
             className="team-click"
           >
