@@ -64,6 +64,13 @@ class App extends Component {
     this.setState({ username: event.target.value });
   }
 
+  componentDidMount() {
+    console.log("mounted");
+    if (this.props.location.pathname.substr(1)) {
+      console.log("detected a path beyond root");
+    }
+  }
+
   handleSubmit() {
     event.preventDefault();
 
