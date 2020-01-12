@@ -370,7 +370,13 @@ const teamId = function(matchData) {
             className="champIcon-mini"
             alt={championIder(participantsObj[player].championId).id}
           />
-          <Link to={`/${participantsObj[player].name}`} className="team-click">
+          <Link
+            to={{
+              pathname: `/${participantsObj[player].name}`,
+              state: { refresh: true }
+            }}
+            className="team-click"
+          >
             {participantsObj[player].name}
           </Link>
         </Row>

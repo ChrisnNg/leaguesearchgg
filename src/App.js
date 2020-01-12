@@ -64,6 +64,13 @@ class App extends Component {
   handleChange(event) {
     this.setState({ username: event.target.value });
   }
+  componentWillReceiveProps(nextProps) {
+    console.log("compoent recieved new props");
+    console.log(nextProps);
+    if (nextProps.location.state.refresh) {
+      window.location.reload();
+    }
+  }
 
   componentDidMount() {
     console.log("mounted");
