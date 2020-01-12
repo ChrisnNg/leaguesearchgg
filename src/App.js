@@ -74,6 +74,8 @@ class App extends Component {
         })
       : this.setState({ loading: true });
 
+    decodeURI(Summoner);
+
     console.log("submission", Summoner);
     axios
       .post(`${baseUrl}/summonerSearch`, {
