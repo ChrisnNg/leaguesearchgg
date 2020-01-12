@@ -433,13 +433,55 @@ const Masteries = function(arrayOfObjects) {
   return html;
 };
 
-const loadIcon = function(profileiconid) {
+const loadIcon = function(profileiconid, level) {
+  let summonerLevel = 29;
+  if (level <= 300) {
+    summonerLevel = 300;
+  }
+  if (level <= 299) {
+    summonerLevel = 299;
+  }
+  if (level < 249) {
+    summonerLevel = 249;
+  }
+  if (level < 199) {
+    summonerLevel = 199;
+  }
+  if (level < 174) {
+    summonerLevel = 174;
+  }
+  if (level < 149) {
+    summonerLevel = 149;
+  }
+  if (level < 124) {
+    summonerLevel = 124;
+  }
+  if (level < 99) {
+    summonerLevel = 99;
+  }
+  if (level < 74) {
+    summonerLevel = 74;
+  }
+  if (level < 49) {
+    summonerLevel = 49;
+  }
+  if (level < 29) {
+    summonerLevel = 29;
+  }
   return (
-    <img
-      src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
-      alt="Summoner-Pfp"
-      className="Summoner-Pfp"
-    />
+    <React.Fragment>
+      <img
+        src={`http://ddragon.leagueoflegends.com/cdn/9.24.2/img/profileicon/${profileiconid}.png`}
+        alt="Summoner-Pfp"
+        className="Summoner-Pfp"
+      />
+
+      <img
+        src={require(`../assets/summoner-icon/${summonerLevel}.png`)}
+        className="champIcon"
+        alt={summonerLevel}
+      />
+    </React.Fragment>
   );
 };
 

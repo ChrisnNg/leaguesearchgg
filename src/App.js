@@ -363,7 +363,8 @@ class App extends Component {
           {this.state.name && this.state.matches ? (
             <section className="summoner">
               <FadeIn>
-                {loadIcon(this.state.icon)}
+                {loadIcon(this.state.icon, this.state.level)}
+
                 <br />
                 {this.state.name ? this.state.name : null}
                 <br />
