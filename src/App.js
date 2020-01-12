@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import {
@@ -67,7 +67,241 @@ class App extends Component {
   componentDidMount() {
     console.log("mounted");
     if (this.props.location.pathname.substr(1)) {
-      console.log("detected a path beyond root");
+      // this.handleSubmit();
+      this.props.location
+        ? this.setState({
+            username: this.props.location.pathname.substr(1),
+            loading: true
+          })
+        : this.setState({ loading: true });
+
+      console.log("submission", this.props.location.pathname.substr(1));
+      axios
+        .post(`${baseUrl}/summonerSearch`, {
+          username: this.props.location.pathname.substr(1)
+        })
+        .then(response => {
+          console.log("/summonerSearch", response.data);
+          this.setState({
+            icon: response.data.profileIconId,
+            level: response.data.summonerLevel,
+            name: response.data.name,
+            accountId: response.data.accountId,
+            summonerId: response.data.id,
+            loading: false
+          });
+
+          const getMatchHistory = axios.post(`${baseUrl}/matchHistory`, {
+            accountId: this.state.accountId,
+            summonerId: this.state.summonerId
+          });
+          const getLeagues = axios.post(`${baseUrl}/leagues`, {
+            summonerId: this.state.summonerId
+          });
+          const getMasteries = axios.post(`${baseUrl}/masteries`, {
+            summonerId: this.state.summonerId
+          });
+          return axios.all([getMatchHistory, getLeagues, getMasteries]);
+        })
+        .then(
+          axios.spread((...responses) => {
+            const responseMatches = responses[0].data;
+            const responseLeagues = responses[1].data;
+            const responseMasteries = responses[2].data;
+
+            // console.log(responseLeagues);
+            // console.log(responseMatches);
+            console.log(responseMasteries);
+
+            const leagues = [];
+            const matchCalls = [];
+
+            responseMatches.matches.slice(0, 9).forEach((element, index) => {
+              matchCalls.push(
+                axios.post(`${baseUrl}/matchInfo`, { matchId: element.gameId })
+              );
+            });
+
+            let leaguesLength = 0;
+            let tier = null;
+            responseLeagues.forEach((element, index) => {
+              leaguesLength += 1;
+              tier = element.tier;
+              leagues.push(
+                <article key={index}>
+                  <Col md="auto">
+                    <img
+                      src={require(`./assets/ranked-emblems/Emblem_${element.tier.charAt(
+                        0
+                      ) + element.tier.toLowerCase().substr(1)}.png`)}
+                      className="rankIcon"
+                      alt={`${element.tier} Emblem`}
+                    />
+                  </Col>
+                  <Col md="auto">
+                    {element.tier} {element.rank} <br />
+                    <i>{queueType(element.queueType)}</i> <br />
+                    {element.freshBlood}
+                    {element.hotStreak}
+                    {element.veteran}
+                    LP: {element.leaguePoints} <br />
+                    W: {element.wins} - L: {element.losses} <br />
+                  </Col>
+                </article>
+              );
+            });
+
+            this.setState({
+              matchList: responseMatches,
+              leagues: { html: leagues, length: leaguesLength, tier },
+              masteries: responseMasteries
+            });
+
+            return axios.all(matchCalls);
+          })
+        )
+        .then(
+          axios.spread((...responses) => {
+            const matches = [];
+
+            responses.forEach((element, index) => {
+              let timeSince = new Date(
+                this.state.matchList.matches[index].timestamp
+              );
+              console.log("each match info", element.data);
+
+              let playerInfo = participantId(
+                this.state.matchList.matches[index].champion,
+                element.data.participants
+              );
+              console.log(playerInfo);
+
+              matches.push(
+                <tr
+                  key={index}
+                  className={playerInfo.stats.win ? "Won" : "Lost"}
+                >
+                  <td>
+                    {mapIder(element.data.mapId)}
+                    <br />
+                    <b>{queueId(this.state.matchList.matches[index].queue)}</b>
+
+                    <br />
+                    <TimeAgo time={timeSince} />
+                    <hr />
+                    <b
+                      className={
+                        playerInfo.stats.win ? "Won-Text" : "Lost-Text"
+                      }
+                    >
+                      {playerInfo.stats.win ? "Victory" : "Defeat"}
+                    </b>
+                    <br />
+                    {Math.floor(element.data.gameDuration / 60) +
+                      "m " +
+                      (element.data.gameDuration -
+                        Math.floor(element.data.gameDuration / 60) * 60) +
+                      "s"}
+                  </td>
+                  <td>
+                    <Container>
+                      <Row className="champ">
+                        <Col className="empty">
+                          {this.state.leagues.tier
+                            ? positionId(
+                                this.state.matchList.matches[index].lane,
+                                this.state.matchList.matches[index].role,
+                                this.state.leagues.tier
+                              )
+                            : null}
+                        </Col>
+
+                        <Col>
+                          <Row className="vertical-align padding-top">
+                            <img
+                              src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }_0.jpg`)}
+                              className="champIcon"
+                              alt={
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }
+                            />
+                          </Row>
+                          <Row className="text-center">
+                            <p>
+                              {
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }
+                            </p>
+                          </Row>
+                        </Col>
+                        <Col>
+                          <Row className="perks-container">
+                            {summonersId(playerInfo.spell1Id)}
+                            {summonersId(playerInfo.spell2Id)}
+                          </Row>
+                          <Row>
+                            {perkId({
+                              primary: playerInfo.stats.perkPrimaryStyle,
+                              slot1: playerInfo.stats.perk0
+                            })}
+                            {perkId({ primary: playerInfo.stats.perkSubStyle })}
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </td>
+                  <td>
+                    Level: {playerInfo.stats.champLevel}
+                    <br />
+                    <b>
+                      {playerInfo.stats.kills} /{" "}
+                      <span className="Lost-Text">
+                        {playerInfo.stats.deaths}
+                      </span>{" "}
+                      / {playerInfo.stats.assists}
+                    </b>
+                    <br />
+                    KDA:{" "}
+                    <b>
+                      {playerInfo.stats.deaths
+                        ? (
+                            (playerInfo.stats.kills +
+                              playerInfo.stats.assists) /
+                            playerInfo.stats.deaths
+                          ).toFixed(2)
+                        : "Perfect"}
+                    </b>{" "}
+                    KDA
+                    <br />
+                    CS:{" "}
+                    {playerInfo.stats.totalMinionsKilled +
+                      playerInfo.stats.neutralMinionsKilled}
+                    <br />
+                    Vision Score: {playerInfo.stats.visionScore}
+                  </td>
+                  <td>{itemsId(playerInfo.stats)}</td>
+                  <td className="td-team">
+                    Teams:
+                    <div className="teams">{teamId(element.data)}</div>
+                  </td>
+                </tr>
+              );
+            });
+
+            this.setState({ matches, loading: false });
+          })
+        )
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 
