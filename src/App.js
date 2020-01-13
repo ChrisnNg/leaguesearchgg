@@ -365,6 +365,7 @@ class App extends Component {
               className="nav-logo"
               alt="logo"
             />
+            <span className="app-title">LeagueSearch.GG</span>
           </Navbar.Brand>
           <Form inline className="form-search">
             <Form.Control

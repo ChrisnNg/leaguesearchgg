@@ -286,6 +286,12 @@ p {
   }
 }
 
+@media only screen and (max-width: 475px) {
+  .app-title {
+font-size: 8pt;
+  }
+}
+
 .show {
   opacity: 1;
   transition: opacity 1000ms;
@@ -305,4 +311,9 @@ p {
   position: relative;
   top: 100px;
   color: whitesmoke;
+}
+
+.app-title {
+  position: relative;
+  left: 15px;
 }
