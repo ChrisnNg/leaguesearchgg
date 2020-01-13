@@ -47,11 +47,11 @@
 }
 
 .Won:hover{
-  box-shadow: 10px 10px 5px black;
+  box-shadow: 10px 0px 5px black;
 }
 
 .Lost:hover{
-  box-shadow: 10px 10px 5px black;
+  box-shadow: 10px 0px 5px black;
 }
 .Won-Text{
   color: #1a78ae

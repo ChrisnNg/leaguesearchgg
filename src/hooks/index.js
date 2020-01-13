@@ -21,7 +21,6 @@ const itemsId = function(playerStats) {
           <Tooltip>
             {itemNumber ? (
               <article>
-                {" "}
                 {items.data[itemNumber].name}
                 <br />
                 {items.data[itemNumber].description.replace(/<[^>]*>?/gm, "")}
@@ -342,13 +341,26 @@ const summonersId = function(summonerId) {
   for (const element of summoners) {
     if (element.key === summonerId.toString()) {
       return (
-        <img
-          src={require(`../assets/summoners/${element.name
-            .charAt(0)
-            .toUpperCase() + element.name.substr(1)}.png`)}
-          className="summonerIcon"
-          alt="summonerSpell"
-        />
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 150, hide: 250 }}
+          overlay={
+            <Tooltip>
+              <article>
+                {element.name}
+                <br />
+              </article>
+            </Tooltip>
+          }
+        >
+          <img
+            src={require(`../assets/summoners/${element.name
+              .charAt(0)
+              .toUpperCase() + element.name.substr(1)}.png`)}
+            className="summonerIcon"
+            alt="summonerSpell"
+          />
+        </OverlayTrigger>
       );
     }
   }
