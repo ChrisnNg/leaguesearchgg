@@ -255,7 +255,7 @@ const perkId = function(perkId) {
           }
         }
       }
-      console.log(element);
+      // console.log(element);
       return (
         <OverlayTrigger
           placement="top"

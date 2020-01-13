@@ -87,13 +87,13 @@ class App extends Component {
 
     decodeURI(Summoner);
 
-    console.log("submission", Summoner);
+    // console.log("submission", Summoner);
     axios
       .post(`${baseUrl}/summonerSearch`, {
         username: Summoner
       })
       .then(response => {
-        console.log("/summonerSearch", response.data);
+        // console.log("/summonerSearch", response.data);
         this.setState({
           icon: loadIcon(
             response.data.profileIconId,
@@ -128,8 +128,8 @@ class App extends Component {
 
           // console.log(responseLeagues);
           // console.log(responseMatches);
-          console.log("/masteries", responseMasteries);
-          console.log("/leagues", responseLeagues);
+          // console.log("/masteries", responseMasteries);
+          // console.log("/leagues", responseLeagues);
 
           const leagues = [];
           const matchCalls = [];
@@ -186,13 +186,13 @@ class App extends Component {
             let timeSince = new Date(
               this.state.matchList.matches[index].timestamp
             );
-            console.log("each match info", element.data);
+            // console.log("each match info", element.data);
 
             let playerInfo = participantId(
               this.state.matchList.matches[index].champion,
               element.data.participants
             );
-            console.log(playerInfo);
+            // console.log(playerInfo);
 
             matches.push(
               <tr key={index} className={playerInfo.stats.win ? "Won" : "Lost"}>
@@ -322,8 +322,8 @@ class App extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log("compoent recieved new props");
-    console.log(nextProps);
+    // console.log("compoent recieved new props");
+    // console.log(nextProps);
     if (nextProps.location.state) {
       if (nextProps.location.state.summonerName) {
         if (this.props.location.pathname.substr(1)) {
@@ -336,9 +336,8 @@ class App extends Component {
     }
   }
   componentDidMount() {
-    console.log("mounted");
+    // console.log("mounted");
     if (this.props.location.pathname.substr(1)) {
-      // this.handleSubmit();
       this.summonerSearch(this.props.location.pathname.substr(1), true);
     }
   }
