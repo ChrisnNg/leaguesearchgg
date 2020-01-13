@@ -485,7 +485,11 @@ class App extends Component {
             </FadeIn>
           ) : null}
         </section>
-        <Footer />
+        <Footer
+          className={
+            !this.props.location.pathname.substr(1) ? "landing-footer" : ""
+          }
+        />
       </div>
     );
   }
