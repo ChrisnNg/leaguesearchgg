@@ -105,6 +105,17 @@
   height: 64px;
   width: 64px;
 }
+
+.mastery-icon {
+  height: 48px;
+  width: 48px;
+  position: relative;
+  right: 86px;
+  top: 25px;
+}
+
+
+
 /* Leagues */
 
 .rankIcon {
@@ -253,6 +264,11 @@ p {
     float: right;
     margin-top: 5px;
     margin-right: 15%;
+  }
+
+  .mastery-text {
+    position: relative;
+    right: 50px;
   }
 }
 

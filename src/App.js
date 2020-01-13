@@ -118,7 +118,8 @@ class App extends Component {
 
           // console.log(responseLeagues);
           // console.log(responseMatches);
-          console.log(responseMasteries);
+          console.log("/masteries", responseMasteries);
+          console.log("/leagues", responseLeagues);
 
           const leagues = [];
           const matchCalls = [];
@@ -347,15 +348,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {!this.props.location.pathname.substr(1) ? (
-          <div className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h2>
-              Welcome to {this.props ? console.log(this.props.location) : null}
-            </h2>
-          </div>
-        ) : null}
-
         <Navbar sticky="top" bg="dark" variant="dark">
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Form inline className="form-search">
@@ -391,6 +383,15 @@ class App extends Component {
             </Button>
           </Form>
         </Navbar>
+
+        {!this.props.location.pathname.substr(1) ? (
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>Welcome to Chris' League of Legends Summoner Search site!</h2>
+            <p>To use, simply search up a summoner name.</p>
+            <p>some examples of them are 'Crisang', ''</p>
+          </div>
+        ) : null}
 
         {this.state.name && this.state.matches ? (
           <section className="summoner">

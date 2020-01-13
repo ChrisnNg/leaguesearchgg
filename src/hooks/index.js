@@ -408,14 +408,21 @@ const Masteries = function(arrayOfObjects) {
             className="champIcon-mastery"
             alt={championIder(mastery.championId).id}
           />
+          <img
+            src={require(`../assets/mastery-icon/mastery-${mastery.championLevel}.png`)}
+            className="mastery-icon"
+            alt={mastery.championLevel}
+          />
         </td>
         <td>
-          <Row>Level: {mastery.championLevel}</Row>
-          <Row>Mastery Points: {mastery.championPoints}</Row>
-          <Row>
-            Last played:
-            <TimeAgo time={mastery.lastPlayTime} />
-          </Row>
+          <div className="mastery-text">
+            <Row>Level: {mastery.championLevel}</Row>
+            <Row>Mastery Points: {mastery.championPoints}</Row>
+            <Row>
+              Last played:
+              <TimeAgo time={mastery.lastPlayTime} />
+            </Row>
+          </div>
         </td>
       </tr>
     );
