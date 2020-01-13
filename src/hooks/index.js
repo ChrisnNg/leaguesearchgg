@@ -5,51 +5,55 @@ import map from "../assets/dragontail-9.24.2/9.24.2/data/en_US/map.json";
 import perks from "../assets/dragontail-9.24.2/9.24.2/data/en_US/runesReforged.json";
 import queue from "../assets/queues.json";
 import summoners from "../assets/summoners.json";
-import { Row, Col } from "react-bootstrap";
+import items from "../assets/dragontail-9.24.2/9.24.2/data/en_US/item.json";
+
+import { Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 
 const itemsId = function(playerStats) {
+  const buildItem = function(itemNumber, slot) {
+    return (
+      <OverlayTrigger
+        placement="top"
+        delay={{ show: 150, hide: 250 }}
+        overlay={
+          <Tooltip>
+            {itemNumber ? (
+              <article>
+                {" "}
+                {items.data[itemNumber].name}
+                <br />
+                {items.data[itemNumber].description.replace(/<[^>]*>?/gm, "")}
+              </article>
+            ) : (
+              `Slot ${slot} empty`
+            )}
+          </Tooltip>
+        }
+      >
+        <img
+          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${itemNumber}.png`)}
+          className="itemIcon"
+          alt={`Item${itemNumber}`}
+        />
+      </OverlayTrigger>
+    );
+  };
+
   return (
     <Col className="ItemsBracket">
       <Row>
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item0}.png`)}
-          className="itemIcon"
-          alt="Item0"
-        />
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item1}.png`)}
-          className="itemIcon"
-          alt="Item1"
-        />
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item2}.png`)}
-          className="itemIcon"
-          alt="Item2"
-        />
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item3}.png`)}
-          className="itemIcon"
-          alt="Item3"
-        />
+        {buildItem(playerStats.item0, 0)}
+        {buildItem(playerStats.item1, 1)}
+        {buildItem(playerStats.item2, 2)}
+        {buildItem(playerStats.item3, 3)}
       </Row>
       <Row>
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item4}.png`)}
-          className="itemIcon"
-          alt="Item4"
-        />
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item5}.png`)}
-          className="itemIcon"
-          alt="Item5"
-        />
-        <img
-          src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/${playerStats.item6}.png`)}
-          className="itemIcon"
-          alt="Item6"
-        />
+        {buildItem(playerStats.item4, 4)}
+        {buildItem(playerStats.item5, 5)}
+        {buildItem(playerStats.item6, 6)}
+
         <img
           src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/item.png`)}
           className="itemIcon"
