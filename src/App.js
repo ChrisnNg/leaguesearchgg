@@ -45,7 +45,8 @@ class App extends Component {
       level: null,
       matches: null,
       leagues: { html: [], length: 0 },
-      masteries: null
+      masteries: null,
+      visibility: "show"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,7 +58,13 @@ class App extends Component {
     this.setState({ username: event.target.value });
   }
 
-  summonerSearch(Summoner) {
+  summonerSearch(Summoner, cb) {
+    if (Summoner === this.state.username) {
+      return null;
+    }
+
+    cb;
+
     this.props.location
       ? this.setState({
           username: Summoner,
@@ -75,12 +82,14 @@ class App extends Component {
       .then(response => {
         console.log("/summonerSearch", response.data);
         this.setState({
-          icon: response.data.profileIconId,
+          icon: loadIcon(
+            response.data.profileIconId,
+            response.data.summonerLevel
+          ),
           level: response.data.summonerLevel,
           name: response.data.name,
           accountId: response.data.accountId,
-          summonerId: response.data.id,
-          loading: false
+          summonerId: response.data.id
         });
 
         const getMatchHistory = axios.post(`${baseUrl}/matchHistory`, {
@@ -281,6 +290,13 @@ class App extends Component {
           });
 
           this.setState({ matches, loading: false });
+
+          setTimeout(
+            function() {
+              this.setState({ visibility: "show" });
+            }.bind(this),
+            300
+          );
         })
       )
       .catch(function(error) {
@@ -294,7 +310,10 @@ class App extends Component {
     if (nextProps.location.state) {
       if (nextProps.location.state.summonerName) {
         if (this.props.location.pathname.substr(1)) {
-          this.summonerSearch(nextProps.location.state.summonerName);
+          this.summonerSearch(
+            nextProps.location.state.summonerName,
+            this.setState({ visibility: "hide" })
+          );
         }
       }
     }
@@ -355,15 +374,19 @@ class App extends Component {
 
           {this.state.name && this.state.matches ? (
             <section className="summoner">
-              <FadeIn>
-                {loadIcon(this.state.icon, this.state.level)}
+              <FadeIn className={this.state.visibility}>
+                {this.state.icon}
 
                 {this.state.level ? (
-                  <span className="level-text">Level: {this.state.level}</span>
+                  <span className={"level-text " + this.state.visibility}>
+                    Level: {this.state.level}
+                  </span>
                 ) : null}
 
                 {this.state.name ? (
-                  <h3 className="name">{this.state.name}</h3>
+                  <h3 className={"name " + this.state.visibility}>
+                    {this.state.name}
+                  </h3>
                 ) : null}
                 <br />
               </FadeIn>
@@ -372,9 +395,9 @@ class App extends Component {
 
           <section
             className={
-              this.state.leagues["length"] === 1
-                ? "single summoner"
-                : "centered summoner"
+              (this.state.leagues["length"] === 1
+                ? "single summoner "
+                : "centered summoner ") + this.state.visibility
             }
           >
             {this.state.leagues.html && this.state.matches ? (
@@ -385,10 +408,14 @@ class App extends Component {
           </section>
 
           {this.state.matches ? (
-            <h4 className="summoner">Recent Games</h4>
+            <h4 className={"summoner " + this.state.visibility}>
+              Recent Games
+            </h4>
           ) : null}
 
-          <section className="matchHistory text-center">
+          <section
+            className={"matchHistory text-center " + this.state.visibility}
+          >
             {this.state.matches ? (
               <FadeIn>
                 <Table>
@@ -398,7 +425,9 @@ class App extends Component {
             ) : null}
           </section>
 
-          <section className="mastery-container text-left">
+          <section
+            className={"mastery-container text-left " + this.state.visibility}
+          >
             {this.state.masteries && this.state.matches ? (
               <FadeIn>
                 <Table hover variant="dark">

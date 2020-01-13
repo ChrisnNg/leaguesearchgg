@@ -256,3 +256,12 @@ p {
     margin-right: 15%;
   }
 }
+
+.show {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+
+.hide {
+  opacity: 0;
+}
