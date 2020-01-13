@@ -8,7 +8,8 @@ import {
   Col,
   Spinner,
   Table,
-  Container
+  Container,
+  Navbar
 } from "react-bootstrap";
 import axios from "axios";
 
@@ -103,6 +104,9 @@ class App extends Component {
           summonerId: this.state.summonerId
         });
         return axios.all([getMatchHistory, getLeagues, getMasteries]);
+      })
+      .catch(function(error) {
+        console.log(error);
       })
       .then(
         axios.spread((...responses) => {
@@ -295,7 +299,7 @@ class App extends Component {
             function() {
               this.setState({ visibility: "show" });
             }.bind(this),
-            300
+            0
           );
         })
       )
@@ -342,108 +346,112 @@ class App extends Component {
             Welcome to {this.props ? console.log(this.props.location) : null}
           </h2>
         </div>
-        <Form>
-          <Form.Group controlId="formUsername">
-            <Form.Label className="summoner">Summoner Name</Form.Label>
-            <Form.Control
-              type="search"
-              placeholder="Enter Summoner Name"
-              onChange={this.handleChange}
-            />
-            <Form.Text className="text-muted">
-              We'll never share your information with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Button type="submit" onClick={this.handleSubmit.bind(this)}>
-            {" "}
-            {!this.state.loading ? (
-              "Submit"
-            ) : (
-              <React.Fragment>
-                <Spinner
-                  as="span"
-                  animation="grow"
-                  size="sm"
-                  role="status"
-                  aria-hidden="true"
-                />{" "}
-                Loading...
-              </React.Fragment>
-            )}
-          </Button>
 
-          {this.state.name && this.state.matches ? (
-            <section className="summoner">
-              <FadeIn className={this.state.visibility}>
-                {this.state.icon}
+        <Navbar sticky="top" bg="dark" variant="dark">
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Form inline className="form-search">
+            <Form.Group controlId="formUsername">
+              <Form.Control
+                type="search"
+                placeholder="Summoner Name"
+                onChange={this.handleChange}
+                className="mr-sm-2"
+              />
+            </Form.Group>
 
-                {this.state.level ? (
-                  <span className={"level-text " + this.state.visibility}>
-                    Level: {this.state.level}
-                  </span>
-                ) : null}
+            <Button
+              variant="outline-info"
+              type="submit"
+              onClick={this.handleSubmit.bind(this)}
+            >
+              {" "}
+              {!this.state.loading ? (
+                "Submit"
+              ) : (
+                <React.Fragment>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />{" "}
+                  Loading...
+                </React.Fragment>
+              )}
+            </Button>
+          </Form>
+        </Navbar>
 
-                {this.state.name ? (
-                  <h3 className={"name " + this.state.visibility}>
-                    {this.state.name}
-                  </h3>
-                ) : null}
-                <br />
-              </FadeIn>
-            </section>
-          ) : null}
+        {this.state.name && this.state.matches ? (
+          <section className="summoner">
+            <FadeIn className={this.state.visibility}>
+              {this.state.icon}
 
-          <section
-            className={
-              (this.state.leagues["length"] === 1
-                ? "single summoner "
-                : "centered summoner ") + this.state.visibility
-            }
-          >
-            {this.state.leagues.html && this.state.matches ? (
-              <FadeIn>
-                <Row>{this.state.leagues.html}</Row>
-              </FadeIn>
-            ) : null}
+              {this.state.level ? (
+                <span className={"level-text " + this.state.visibility}>
+                  Level: {this.state.level}
+                </span>
+              ) : null}
+
+              {this.state.name ? (
+                <h3 className={"name " + this.state.visibility}>
+                  {this.state.name}
+                </h3>
+              ) : null}
+              <br />
+            </FadeIn>
           </section>
+        ) : null}
 
+        <section
+          className={
+            (this.state.leagues["length"] === 1
+              ? "single summoner "
+              : "centered summoner ") + this.state.visibility
+          }
+        >
+          {this.state.leagues.html && this.state.matches ? (
+            <FadeIn>
+              <Row>{this.state.leagues.html}</Row>
+            </FadeIn>
+          ) : null}
+        </section>
+
+        {this.state.matches ? (
+          <h4 className={"summoner " + this.state.visibility}>Recent Games</h4>
+        ) : null}
+
+        <section
+          className={"matchHistory text-center " + this.state.visibility}
+        >
           {this.state.matches ? (
-            <h4 className={"summoner " + this.state.visibility}>
-              Recent Games
-            </h4>
+            <FadeIn>
+              <Table>
+                <tbody>{this.state.matches}</tbody>
+              </Table>
+            </FadeIn>
           ) : null}
+        </section>
 
-          <section
-            className={"matchHistory text-center " + this.state.visibility}
-          >
-            {this.state.matches ? (
-              <FadeIn>
-                <Table>
-                  <tbody>{this.state.matches}</tbody>
-                </Table>
-              </FadeIn>
-            ) : null}
-          </section>
-
-          <section
-            className={"mastery-container text-left " + this.state.visibility}
-          >
-            {this.state.masteries && this.state.matches ? (
-              <FadeIn>
-                <Table hover variant="dark">
-                  <thead>
-                    <tr>
-                      <th colSpan="2" className="text-center">
-                        Champion Mastery
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>{Masteries(this.state.masteries)}</tbody>
-                </Table>
-              </FadeIn>
-            ) : null}
-          </section>
-        </Form>
+        <section
+          className={"mastery-container text-left " + this.state.visibility}
+        >
+          {this.state.masteries && this.state.matches ? (
+            <FadeIn>
+              <Table hover variant="dark">
+                <thead>
+                  <tr>
+                    <th colSpan="2" className="text-center">
+                      Champion Mastery
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>{Masteries(this.state.masteries)}</tbody>
+              </Table>
+            </FadeIn>
+          ) : null}
+        </section>
       </div>
     );
   }

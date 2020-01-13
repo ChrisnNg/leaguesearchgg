@@ -225,13 +225,12 @@ p {
   min-height: 250px;
   position: relative;
   bottom: 425px;
-  display: inline;
   margin-bottom: -400px;
 }
 
 .level-text {
   position: relative;
-  bottom: 116px;
+  bottom: 118px;
   font-size: 10pt;
   color: blueviolet;
   margin-bottom: -200px;
@@ -264,4 +263,9 @@ p {
 
 .hide {
   opacity: 0;
+}
+
+.form-search {
+  position: absolute;
+  right: 25px;
 }
