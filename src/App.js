@@ -112,6 +112,7 @@ class App extends Component {
         const getLeagues = axios.post(`${baseUrl}/leagues`, {
           summonerId: this.state.summonerId
         });
+        console.log(this.state.summonerId);
         const getMasteries = axios.post(`${baseUrl}/masteries`, {
           summonerId: this.state.summonerId
         });
