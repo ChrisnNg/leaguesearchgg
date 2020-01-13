@@ -59,9 +59,11 @@ class App extends Component {
     this.setState({ username: event.target.value });
   }
 
-  summonerSearch(Summoner, cb) {
-    if (Summoner === this.state.username) {
-      return null;
+  summonerSearch(Summoner, check, cb) {
+    if (check) {
+      if (Summoner === this.state.username) {
+        return null;
+      }
     }
 
     cb;
@@ -326,7 +328,7 @@ class App extends Component {
     console.log("mounted");
     if (this.props.location.pathname.substr(1)) {
       // this.handleSubmit();
-      this.summonerSearch(this.props.location.pathname.substr(1));
+      this.summonerSearch(this.props.location.pathname.substr(1), true);
     }
   }
 
@@ -334,18 +336,25 @@ class App extends Component {
     event.preventDefault();
 
     this.props.history.push(`/${this.state.username}`);
-    window.location.reload();
+
+    this.summonerSearch(
+      this.state.username,
+      false,
+      this.setState({ visibility: "hide" })
+    );
   }
 
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>
-            Welcome to {this.props ? console.log(this.props.location) : null}
-          </h2>
-        </div>
+        {!this.props.location.pathname.substr(1) ? (
+          <div className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h2>
+              Welcome to {this.props ? console.log(this.props.location) : null}
+            </h2>
+          </div>
+        ) : null}
 
         <Navbar sticky="top" bg="dark" variant="dark">
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
