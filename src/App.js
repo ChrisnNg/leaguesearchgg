@@ -428,9 +428,9 @@ class App extends Component {
               ) : null}
 
               {this.state.name ? (
-                <h3 className={"name " + this.state.visibility}>
+                <b className={"name " + this.state.visibility}>
                   {this.state.name}
-                </h3>
+                </b>
               ) : null}
               <br />
             </FadeIn>

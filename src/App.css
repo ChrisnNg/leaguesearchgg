@@ -262,6 +262,7 @@ p {
 .name {
   margin-top: -25px;
   margin-bottom: 35px;
+  font-size: 24pt;
 }
 
 @media only screen and (min-width: 1368px) {
