@@ -232,22 +232,47 @@ const perkId = function(perkId) {
           for (const element of perk.runes) {
             if (element.id === perkId.slot1) {
               return (
-                <img
-                  src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
-                  className="perkIcon"
-                  alt="summonerSpell"
-                />
+                <OverlayTrigger
+                  placement="top"
+                  delay={{ show: 150, hide: 250 }}
+                  overlay={
+                    <Tooltip>
+                      <article>
+                        {element.name}
+                        <br />
+                        {element.longDesc.replace(/<[^>]*>?/gm, "")}
+                      </article>
+                    </Tooltip>
+                  }
+                >
+                  <img
+                    src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
+                    className="perkIcon"
+                    alt="summonerSpell"
+                  />
+                </OverlayTrigger>
               );
             }
           }
         }
       }
+      console.log(element);
       return (
-        <img
-          src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
-          className="perkIcon"
-          alt="summonerSpell"
-        />
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 150, hide: 250 }}
+          overlay={
+            <Tooltip>
+              <article>{element.name}</article>
+            </Tooltip>
+          }
+        >
+          <img
+            src={require(`../assets/dragontail-9.24.2/img/${element.icon}`)}
+            className="perkIcon"
+            alt="summonerSpell"
+          />
+        </OverlayTrigger>
       );
     }
   }
