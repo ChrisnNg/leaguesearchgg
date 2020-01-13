@@ -47,8 +47,7 @@ class App extends Component {
       matches: null,
       leagues: { html: [], length: 0 },
       masteries: null,
-      visibility: "show",
-      landing: null
+      visibility: "show"
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -62,7 +61,11 @@ class App extends Component {
   }
 
   handleLanding() {
-    this.summonerSearch("crisang", false);
+    this.summonerSearch(
+      "crisang",
+      false,
+      this.setState({ visibility: "hide" })
+    );
     this.props.history.push(`/crisang`);
   }
 
@@ -357,16 +360,19 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar sticky="top" bg="dark" variant="dark">
-          <Navbar.Brand href="/">Navbar</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img
+              src={require("./assets/Rengar_Plush_In_The_Jungle_icon.png")}
+              className="nav-logo"
+              alt="logo"
+            />
+          </Navbar.Brand>
           <Form inline className="form-search">
-            <Form.Group controlId="formUsername">
-              <Form.Control
-                type="search"
-                placeholder="Summoner Name"
-                onChange={this.handleChange}
-                className="mr-sm-2"
-              />
-            </Form.Group>
+            <Form.Control
+              type="search"
+              placeholder="Summoner Name"
+              onChange={this.handleChange}
+            />
 
             <Button
               variant="outline-info"
@@ -393,16 +399,19 @@ class App extends Component {
         </Navbar>
 
         {!this.props.location.pathname.substr(1) ? (
-          <div className="landing">
-            <img src={logo} className="App-logo" alt="logo" />
+          <FadeIn className={"landing " + this.state.visibility}>
+            <img
+              src={require("./assets/teemo-logo.jpg")}
+              className="App-logo"
+              alt="logo"
+            />
+
             <h2>Welcome to Chris' League of Legends Summoner Search site!</h2>
-            <p>To use, simply search up a summoner name.</p>
+            <p>To begin, search up a summoner name.</p>
             <Button variant="outline-info" onClick={this.handleLanding}>
               Here's one to get you started
             </Button>
-
-            {this.state.landing}
-          </div>
+          </FadeIn>
         ) : null}
 
         {this.state.name && this.state.matches ? (
