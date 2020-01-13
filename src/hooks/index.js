@@ -419,7 +419,7 @@ const Masteries = function(arrayOfObjects) {
             <Row>Level: {mastery.championLevel}</Row>
             <Row>Mastery Points: {mastery.championPoints}</Row>
             <Row>
-              Last played:
+              Last played: &nbsp;
               <TimeAgo time={mastery.lastPlayTime} />
             </Row>
           </div>

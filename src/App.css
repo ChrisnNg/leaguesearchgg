@@ -279,9 +279,16 @@ p {
 
 .hide {
   opacity: 0;
+  transition: opacity 200ms;
 }
 
 .form-search {
   position: absolute;
   right: 25px;
+}
+
+.landing {
+  position: relative;
+  top: 100px;
+  color: whitesmoke;
 }

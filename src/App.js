@@ -29,7 +29,7 @@ import {
   loadIcon
 } from "./hooks/index";
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
 
@@ -47,16 +47,23 @@ class App extends Component {
       matches: null,
       leagues: { html: [], length: 0 },
       masteries: null,
-      visibility: "show"
+      visibility: "show",
+      landing: null
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.summonerSearch = this.summonerSearch.bind(this);
+    this.handleLanding = this.handleLanding.bind(this);
   }
 
   handleChange(event) {
     this.setState({ username: event.target.value });
+  }
+
+  handleLanding() {
+    this.summonerSearch("crisang", false);
+    this.props.history.push(`/crisang`);
   }
 
   summonerSearch(Summoner, check, cb) {
@@ -66,6 +73,7 @@ class App extends Component {
       }
     }
 
+    //cb for setting visibility to false
     cb;
 
     this.props.location
@@ -349,7 +357,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar sticky="top" bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="/">Navbar</Navbar.Brand>
           <Form inline className="form-search">
             <Form.Group controlId="formUsername">
               <Form.Control
@@ -385,11 +393,15 @@ class App extends Component {
         </Navbar>
 
         {!this.props.location.pathname.substr(1) ? (
-          <div className="App-header">
+          <div className="landing">
             <img src={logo} className="App-logo" alt="logo" />
             <h2>Welcome to Chris' League of Legends Summoner Search site!</h2>
             <p>To use, simply search up a summoner name.</p>
-            <p>some examples of them are 'Crisang', ''</p>
+            <Button variant="outline-info" onClick={this.handleLanding}>
+              Here's one to get you started
+            </Button>
+
+            {this.state.landing}
           </div>
         ) : null}
 
