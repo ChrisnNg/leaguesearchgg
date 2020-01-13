@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import {
   Form,
@@ -29,7 +28,7 @@ import {
   loadIcon
 } from "./hooks/index";
 
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
 
