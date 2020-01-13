@@ -114,6 +114,7 @@
   width: 64px;
 }
 
+
 .mastery-icon {
   height: 48px;
   width: 48px;
@@ -121,7 +122,6 @@
   right: 86px;
   top: 25px;
 }
-
 
 
 /* Leagues */
@@ -264,7 +264,7 @@ p {
   margin-bottom: 35px;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1368px) {
   .mastery-container {
     min-width: 250px;
     max-width: 17%;
@@ -274,11 +274,30 @@ p {
     margin-right: 15%;
   }
 
+
+  .mastery-icon {
+  height: 48px;
+  width: 48px;
+  position: relative;
+  right: 18px;
+  top: -25px;
+}
+}
+@media only screen and (min-width: 1865px) {
+
+
   .mastery-text {
     position: relative;
-    right: 50px;
+    right: 25px;
   }
+
+  .mastery-icon {
+    right: 80px;
+    top: 25px;
+  }
+  
 }
+
 
 @media only screen and (max-width: 575px) {
   input {

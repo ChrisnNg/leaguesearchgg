@@ -1,0 +1,13 @@
+.footer {
+  position: relative;
+  top: -17px;
+  background: #343a40;
+}
+
+@media only screen and (min-width: 1368px) {
+  .footer {
+    position: relative;
+    top: -17px;
+    background: transparent;
+  }
+}

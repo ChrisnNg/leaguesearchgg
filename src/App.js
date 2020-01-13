@@ -28,6 +28,8 @@ import {
   loadIcon
 } from "./hooks/index";
 
+import Footer from "./Footer.js";
+
 import { withRouter } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
@@ -483,6 +485,7 @@ class App extends Component {
             </FadeIn>
           ) : null}
         </section>
+        <Footer />
       </div>
     );
   }
