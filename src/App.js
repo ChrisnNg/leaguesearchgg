@@ -199,7 +199,7 @@ class App extends Component {
 
             matches.push(
               <tr key={index} className={playerInfo.stats.win ? "Won" : "Lost"}>
-                <td>
+                <td className="td-queue">
                   {mapIder(element.data.mapId)}
                   <br />
                   <b>{queueId(this.state.matchList.matches[index].queue)}</b>
@@ -219,7 +219,7 @@ class App extends Component {
                       Math.floor(element.data.gameDuration / 60) * 60) +
                     "s"}
                 </td>
-                <td>
+                <td className="td-champ">
                   <Container>
                     <Row className="champ">
                       <Col className="empty">
@@ -274,7 +274,11 @@ class App extends Component {
                     </Row>
                   </Container>
                 </td>
-                <td>
+                <td
+                  className={
+                    "td-score " + (playerInfo.stats.win ? "Won" : "Lost")
+                  }
+                >
                   Level: {playerInfo.stats.champLevel}
                   <br />
                   <b>

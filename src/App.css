@@ -46,13 +46,7 @@
   border-width: 2px;
 }
 
-.Won:hover{
-  box-shadow: 10px 0px 5px black;
-}
 
-.Lost:hover{
-  box-shadow: 10px 0px 5px black;
-}
 .Won-Text{
   color: #1a78ae
 }
@@ -84,6 +78,7 @@
   border-radius: 50%;
   margin-right: 5px;
 }
+
 
 .ItemsBracket {
   min-width: 128px;
@@ -177,11 +172,26 @@ p {
   width: 250px;
 }
 
+
 .td-team {
   width: 246.25px;
-
+  position: relative;
+  left: -51px;
 }
 
+.td-items {
+  position: relative;
+  left: -51px;
+}
+.td-champ {
+  position: relative;
+  left: -50px;
+}
+
+.td-score {
+  position: relative;
+  left: -51px;
+}
 .matchHistory {
   width: 900px;
   font-size: 11px;
@@ -191,7 +201,7 @@ p {
 .table td, .table th {
   max-width: 320px;
   vertical-align: middle !important;
-  
+  border: none;
 }
 
 .table-bordered td, .table-bordered th {
@@ -312,26 +322,49 @@ p {
     width: 250px;
   }
   
-  .td-team {
+  .td-champ{
     position: relative;
-    top: 165px;
-    right: 438px;
-    width: 298px;
-    border: none;
+    left: -29px;
+
+  }
+
+  .td-queue {
+    font-size: 8pt;
+    min-width: 120px;
+  }
+
+  .td-score {
+    font-size: 7pt;
+    position: relative;
+    top: 164px;
+    min-width: 167px;
+    left: -350px;
   }
   .td-items {
     position: relative;
-    top: 165px;
-    right: 435px;
-    min-width: 167px;
-    border: none;
+    top: 164px;
+    min-width: 170px;
+    left: -366px;
+
   }
+  .td-team {
+    position: relative;
+    top: 331px;
+    left: -686px;
+
+    min-width: 320px;
+  }
+
   .matches {
     border-collapse:separate; 
-    border-spacing: 0em 175px;
+    border-spacing: 0em 330px;
     padding-bottom: 1em;  
     /* width: 50% !important; */
   }
+  .won {
+    width: 400px;
+  }
+
 }
 
 @media only screen and (max-width: 575px) {
