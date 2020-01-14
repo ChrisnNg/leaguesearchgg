@@ -34,6 +34,9 @@ import { withRouter } from "react-router-dom";
 
 import FadeIn from "react-fade-in";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const baseUrl = process.env.REACT_APP_BACKEND_URL || "";
 
 class App extends Component {
@@ -375,6 +378,13 @@ class App extends Component {
   handleSubmit() {
     event.preventDefault();
 
+    if (!this.state.username) {
+      return toast("Please enter a summoner name!", {
+        position: toast.POSITION.TOP_CENTER,
+        className: "toastera"
+      });
+    }
+
     this.props.history.push(`/${this.state.username}`);
 
     this.summonerSearch(
@@ -398,6 +408,7 @@ class App extends Component {
           </Navbar.Brand>
           <Form inline className="form-search">
             <Form.Control
+              required
               type="search"
               placeholder="Summoner Name"
               onChange={this.handleChange}
@@ -427,7 +438,7 @@ class App extends Component {
             </Button>
           </Form>
         </Navbar>
-
+        <ToastContainer />
         {!this.props.location.pathname.substr(1) ? (
           <FadeIn className={"landing " + this.state.visibility}>
             <img

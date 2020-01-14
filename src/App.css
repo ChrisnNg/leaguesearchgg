@@ -453,7 +453,7 @@ p {
 
 .landing {
   position: relative;
-  top: 100px;
+  top: 300px;
   color: whitesmoke;
 }
 
@@ -463,4 +463,9 @@ p {
 }
 div#sidebar {
   display: none;
+}
+
+.toastera {
+  background: black !important;
+
 }
