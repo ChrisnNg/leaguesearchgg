@@ -6,6 +6,7 @@
   background-size: 100% 100%; /* Resize the background image to cover the entire container */
   height: 2650px;
   width: 100%;
+  overflow-x: hidden; 
 }
 
 .App-logo {
@@ -378,6 +379,22 @@ p {
 font-size: 8pt;
   }
 }
+@media only screen and (max-width: 375px) {
+  .Summoner-Icon
+  {
+position: relative;
+left: -10px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .Summoner-Icon
+  {
+position: relative;
+left: -40px;
+  }
+}
+
 
 .show {
   opacity: 1;
