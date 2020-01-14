@@ -387,7 +387,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar sticky="top" bg="dark" variant="dark">
+        <Navbar fixed="top" bg="dark" variant="dark">
           <Navbar.Brand href="/">
             <img
               src={require("./assets/Rengar_Plush_In_The_Jungle_icon.png")}
@@ -406,6 +406,7 @@ class App extends Component {
             <Button
               variant="outline-info"
               type="submit"
+              className={"form-button"}
               onClick={this.handleSubmit.bind(this)}
             >
               {" "}

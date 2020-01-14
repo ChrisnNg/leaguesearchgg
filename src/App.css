@@ -405,6 +405,16 @@ p {
     position: relative;
   left: 3%;
   }
+  .form-control {
+    max-width: 100px;
+    padding-right: 1px !important;
+    padding-left: 5px !important;
+  }
+  .form-button {
+    max-width: 60px;
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+  }
 }
 
 @media only screen and (max-width: 320px) {
@@ -417,6 +427,7 @@ p {
     position: relative;
     left: 0%;
   }
+
 }
 
 
