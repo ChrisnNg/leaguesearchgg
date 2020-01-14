@@ -4,10 +4,15 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: 100% 100%; /* Resize the background image to cover the entire container */
-  height: auto;
+  height:   2560px;
+
   width: 100%;
   overflow-x: hidden; 
 
+}
+
+.App-height {
+  height: auto;
 }
 
 .App-logo {

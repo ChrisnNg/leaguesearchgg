@@ -386,7 +386,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className={(this.state.matches ? "App-height" : null) + " App"}>
         <Navbar fixed="top" bg="dark" variant="dark">
           <Navbar.Brand href="/">
             <img
