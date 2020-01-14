@@ -289,6 +289,16 @@ p {
   font-size: 24pt;
 }
 
+tr:hover .td-champ .container div .col div .champIcon{
+  box-shadow: 3px -1px 18px #888888;
+  width: auto;
+}
+
+@media only screen and (min-width: 882px) {
+  .td-team {
+    min-width: 285px;
+  }
+}
 @media only screen and (min-width: 1368px) {
   .mastery-container {
     min-width: 250px;
