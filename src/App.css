@@ -381,37 +381,41 @@ p {
   }
   .matches {
     position: relative;
-left: 15%;
+    left: 15%;
   }
 }
 
 @media only screen and (max-width: 475px) {
   .app-title {
-font-size: 8pt;
+    font-size: 8pt;
+  }
+  .matches {
+    position: relative;
+  left: 5%;
   }
 }
 @media only screen and (max-width: 375px) {
   .Summoner-Icon
   {
-position: relative;
-left: -10px;
+    position: relative;
+    left: -10px;
   }
 
   .matches {
     position: relative;
-left: 3%;
+  left: 3%;
   }
 }
 
 @media only screen and (max-width: 320px) {
   .Summoner-Icon
   {
-position: relative;
-left: -40px;
+    position: relative;
+    left: -40px;
   }
   .matches {
     position: relative;
-left: 0%;
+    left: 0%;
   }
 }
 
