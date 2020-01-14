@@ -4,9 +4,10 @@
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: 100% 100%; /* Resize the background image to cover the entire container */
-  height: 2650px;
+  height: auto;
   width: 100%;
   overflow-x: hidden; 
+
 }
 
 .App-logo {
@@ -317,16 +318,20 @@ p {
 }
 
 @media only screen and (max-width: 880px) {
+  .App {
+    background: linear-gradient(#086375, #9198e5);
+  }
+
   .teams {
     position: relative;
-    left: 20px;
+    left: 19px;
     width: 250px;
   }
   
   .td-champ{
     position: relative;
-    left: -29px;
-
+    left: -28px;
+    
   }
 
   .td-queue {
@@ -358,7 +363,7 @@ p {
 
   .matches {
     border-collapse:separate; 
-    border-spacing: 0em 330px;
+    border-spacing: 0em 335px;
     padding-bottom: 1em;  
     /* width: 50% !important; */
   }
@@ -420,4 +425,7 @@ left: -40px;
 .app-title {
   position: relative;
   left: 15px;
+}
+div#sidebar {
+  display: none;
 }
