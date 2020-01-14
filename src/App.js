@@ -313,8 +313,18 @@ class App extends Component {
                   <br />
                   Vision Score: {playerInfo.stats.visionScore}
                 </td>
-                <td className="td-items">{itemsId(playerInfo.stats)}</td>
-                <td className="td-team">
+                <td
+                  className={
+                    "td-items " + (playerInfo.stats.win ? "Won" : "Lost")
+                  }
+                >
+                  {itemsId(playerInfo.stats)}
+                </td>
+                <td
+                  className={
+                    "td-team " + (playerInfo.stats.win ? "Won" : "Lost")
+                  }
+                >
                   Teams:
                   <div className="teams">{teamId(element.data)}</div>
                 </td>
@@ -473,7 +483,7 @@ class App extends Component {
         >
           {this.state.matches ? (
             <FadeIn>
-              <Table>
+              <Table className="matches">
                 <tbody>{this.state.matches}</tbody>
               </Table>
             </FadeIn>

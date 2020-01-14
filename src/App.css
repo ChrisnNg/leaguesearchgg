@@ -71,7 +71,7 @@
   color: 	#ffc45d;
 }
 
-.table {
+.matches {
   border-collapse:separate; 
   border-spacing: 0em .5em;
   padding-bottom: 1em;  
@@ -315,17 +315,18 @@ p {
   .td-team {
     position: relative;
     top: 165px;
-    right: 465px;
+    right: 438px;
     width: 298px;
-  
+    border: none;
   }
   .td-items {
     position: relative;
     top: 165px;
     right: 435px;
     min-width: 167px;
+    border: none;
   }
-  .table {
+  .matches {
     border-collapse:separate; 
     border-spacing: 0em 175px;
     padding-bottom: 1em;  
