@@ -46,12 +46,12 @@ const itemsId = function(playerStats) {
         {buildItem(playerStats.item0, 0)}
         {buildItem(playerStats.item1, 1)}
         {buildItem(playerStats.item2, 2)}
-        {buildItem(playerStats.item3, 3)}
+        {buildItem(playerStats.item6, 6)}
       </Row>
       <Row>
+        {buildItem(playerStats.item3, 3)}
         {buildItem(playerStats.item4, 4)}
         {buildItem(playerStats.item5, 5)}
-        {buildItem(playerStats.item6, 6)}
 
         <img
           src={require(`../assets/dragontail-9.24.2/9.24.2/img/item/item.png`)}

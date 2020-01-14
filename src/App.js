@@ -278,21 +278,34 @@ class App extends Component {
                   Level: {playerInfo.stats.champLevel}
                   <br />
                   <b>
-                    {playerInfo.stats.kills} /{" "}
+                    <span className="Won-Text">{playerInfo.stats.kills}</span> /{" "}
                     <span className="Lost-Text">{playerInfo.stats.deaths}</span>{" "}
                     / {playerInfo.stats.assists}
                   </b>
                   <br />
                   KDA:{" "}
                   <b>
-                    {playerInfo.stats.deaths
-                      ? (
+                    {playerInfo.stats.deaths ? (
+                      <span
+                        className={
+                          (
+                            (playerInfo.stats.kills +
+                              playerInfo.stats.assists) /
+                            playerInfo.stats.deaths
+                          ).toFixed(2) >= 3
+                            ? "Great-Text"
+                            : null
+                        }
+                      >
+                        {(
                           (playerInfo.stats.kills + playerInfo.stats.assists) /
                           playerInfo.stats.deaths
-                        ).toFixed(2)
-                      : "Perfect"}
+                        ).toFixed(2)}
+                      </span>
+                    ) : (
+                      "Perfect"
+                    )}
                   </b>{" "}
-                  KDA
                   <br />
                   CS:{" "}
                   {playerInfo.stats.totalMinionsKilled +
