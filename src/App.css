@@ -1,10 +1,11 @@
 .App {
   text-align: center;
+  background: linear-gradient(#086375, #1DD3B0, #9198e5);
   background-image: url("assets/3840x2160-final-boss-veigar-lol-splash-art-league-of-legends_1574097790.jpg");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: 100% 100%; /* Resize the background image to cover the entire container */
-  height:   2560px;
+  height:   2560px ;
 
   width: 100%;
   overflow-x: hidden; 
