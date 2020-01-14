@@ -3,7 +3,7 @@
   background-image: url("assets/3840x2160-final-boss-veigar-lol-splash-art-league-of-legends_1574097790.jpg");
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-size: 100% 100%; /* Resize the background image to cover the entire container */
   height: 2650px;
   width: 100%;
 }
@@ -260,6 +260,7 @@ p {
 }
 
 .summoner {
+  margin-bottom: 30px;
   color: aliceblue;
 }
 
