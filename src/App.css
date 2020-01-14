@@ -189,6 +189,7 @@ p {
 }
 
 .table td, .table th {
+  max-width: 320px;
   vertical-align: middle !important;
   
 }
@@ -304,6 +305,33 @@ p {
   
 }
 
+@media only screen and (max-width: 880px) {
+  .teams {
+    position: relative;
+    left: 20px;
+    width: 250px;
+  }
+  
+  .td-team {
+    position: relative;
+    top: 165px;
+    right: 465px;
+    width: 298px;
+  
+  }
+  .td-items {
+    position: relative;
+    top: 165px;
+    right: 435px;
+    min-width: 167px;
+  }
+  .table {
+    border-collapse:separate; 
+    border-spacing: 0em 175px;
+    padding-bottom: 1em;  
+    /* width: 50% !important; */
+  }
+}
 
 @media only screen and (max-width: 575px) {
   input {

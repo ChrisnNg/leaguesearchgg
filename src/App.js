@@ -313,7 +313,7 @@ class App extends Component {
                   <br />
                   Vision Score: {playerInfo.stats.visionScore}
                 </td>
-                <td>{itemsId(playerInfo.stats)}</td>
+                <td className="td-items">{itemsId(playerInfo.stats)}</td>
                 <td className="td-team">
                   Teams:
                   <div className="teams">{teamId(element.data)}</div>
