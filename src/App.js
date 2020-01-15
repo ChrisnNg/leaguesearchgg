@@ -200,143 +200,156 @@ class App extends Component {
             );
             // console.log(playerInfo);
 
-            matches.push(
-              <tr key={index} className={playerInfo.stats.win ? "Won" : "Lost"}>
-                <td className="td-queue">
-                  {mapIder(element.data.mapId)}
-                  <br />
-                  <b>{queueId(this.state.matchList.matches[index].queue)}</b>
-
-                  <br />
-                  <TimeAgo time={timeSince} />
-                  <hr />
-                  <b
-                    className={playerInfo.stats.win ? "Won-Text" : "Lost-Text"}
-                  >
-                    {playerInfo.stats.win ? "Victory" : "Defeat"}
-                  </b>
-                  <br />
-                  {Math.floor(element.data.gameDuration / 60) +
-                    "m " +
-                    (element.data.gameDuration -
-                      Math.floor(element.data.gameDuration / 60) * 60) +
-                    "s"}
-                </td>
-                <td className="td-champ">
-                  <Container>
-                    <Row className="champ">
-                      <Col className="empty">
-                        {this.state.leagues.tier
-                          ? positionId(
-                              this.state.matchList.matches[index].lane,
-                              this.state.matchList.matches[index].role,
-                              this.state.leagues.tier
-                            )
-                          : null}
-                      </Col>
-
-                      <Col>
-                        <Row className="vertical-align padding-top">
-                          <img
-                            src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
-                              championIder(
-                                this.state.matchList.matches[index].champion
-                              ).id
-                            }_0.jpg`)}
-                            className="champIcon"
-                            alt={
-                              championIder(
-                                this.state.matchList.matches[index].champion
-                              ).id
-                            }
-                          />
-                        </Row>
-                        <Row className="text-center">
-                          <p>
-                            {
-                              championIder(
-                                this.state.matchList.matches[index].champion
-                              ).id
-                            }
-                          </p>
-                        </Row>
-                      </Col>
-                      <Col>
-                        <Row className="perks-container">
-                          {summonersId(playerInfo.spell1Id)}
-                          {summonersId(playerInfo.spell2Id)}
-                        </Row>
-                        <Row>
-                          {perkId({
-                            primary: playerInfo.stats.perkPrimaryStyle,
-                            slot1: playerInfo.stats.perk0
-                          })}
-                          {perkId({ primary: playerInfo.stats.perkSubStyle })}
-                        </Row>
-                      </Col>
-                    </Row>
-                  </Container>
-                </td>
-                <td
-                  className={
-                    "td-score " + (playerInfo.stats.win ? "Won" : "Lost")
-                  }
+            if (!championIder(this.state.matchList.matches[index].champion)) {
+              console.log("champion unable to be identified");
+            } else {
+              matches.push(
+                <tr
+                  key={index}
+                  className={playerInfo.stats.win ? "Won" : "Lost"}
                 >
-                  Level: {playerInfo.stats.champLevel}
-                  <br />
-                  <b>
-                    <span className="Won-Text">{playerInfo.stats.kills}</span> /{" "}
-                    <span className="Lost-Text">{playerInfo.stats.deaths}</span>{" "}
-                    / {playerInfo.stats.assists}
-                  </b>
-                  <br />
-                  KDA:{" "}
-                  <b>
-                    {playerInfo.stats.deaths ? (
-                      <span
-                        className={
-                          (
+                  <td className="td-queue">
+                    {mapIder(element.data.mapId)}
+                    <br />
+                    <b>{queueId(this.state.matchList.matches[index].queue)}</b>
+
+                    <br />
+                    <TimeAgo time={timeSince} />
+                    <hr />
+                    <b
+                      className={
+                        playerInfo.stats.win ? "Won-Text" : "Lost-Text"
+                      }
+                    >
+                      {playerInfo.stats.win ? "Victory" : "Defeat"}
+                    </b>
+                    <br />
+                    {Math.floor(element.data.gameDuration / 60) +
+                      "m " +
+                      (element.data.gameDuration -
+                        Math.floor(element.data.gameDuration / 60) * 60) +
+                      "s"}
+                  </td>
+                  <td className="td-champ">
+                    <Container>
+                      <Row className="champ">
+                        <Col className="empty">
+                          {this.state.leagues.tier
+                            ? positionId(
+                                this.state.matchList.matches[index].lane,
+                                this.state.matchList.matches[index].role,
+                                this.state.leagues.tier
+                              )
+                            : null}
+                        </Col>
+
+                        <Col>
+                          <Row className="vertical-align padding-top">
+                            <img
+                              src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }_0.jpg`)}
+                              className="champIcon"
+                              alt={
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }
+                            />
+                          </Row>
+                          <Row className="text-center">
+                            <p>
+                              {
+                                championIder(
+                                  this.state.matchList.matches[index].champion
+                                ).id
+                              }
+                            </p>
+                          </Row>
+                        </Col>
+                        <Col>
+                          <Row className="perks-container">
+                            {summonersId(playerInfo.spell1Id)}
+                            {summonersId(playerInfo.spell2Id)}
+                          </Row>
+                          <Row>
+                            {perkId({
+                              primary: playerInfo.stats.perkPrimaryStyle,
+                              slot1: playerInfo.stats.perk0
+                            })}
+                            {perkId({ primary: playerInfo.stats.perkSubStyle })}
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </td>
+                  <td
+                    className={
+                      "td-score " + (playerInfo.stats.win ? "Won" : "Lost")
+                    }
+                  >
+                    Level: {playerInfo.stats.champLevel}
+                    <br />
+                    <b>
+                      <span className="Won-Text">{playerInfo.stats.kills}</span>{" "}
+                      /{" "}
+                      <span className="Lost-Text">
+                        {playerInfo.stats.deaths}
+                      </span>{" "}
+                      / {playerInfo.stats.assists}
+                    </b>
+                    <br />
+                    KDA:{" "}
+                    <b>
+                      {playerInfo.stats.deaths ? (
+                        <span
+                          className={
+                            (
+                              (playerInfo.stats.kills +
+                                playerInfo.stats.assists) /
+                              playerInfo.stats.deaths
+                            ).toFixed(2) >= 3
+                              ? "Great-Text"
+                              : null
+                          }
+                        >
+                          {(
                             (playerInfo.stats.kills +
                               playerInfo.stats.assists) /
                             playerInfo.stats.deaths
-                          ).toFixed(2) >= 3
-                            ? "Great-Text"
-                            : null
-                        }
-                      >
-                        {(
-                          (playerInfo.stats.kills + playerInfo.stats.assists) /
-                          playerInfo.stats.deaths
-                        ).toFixed(2)}
-                      </span>
-                    ) : (
-                      "Perfect"
-                    )}
-                  </b>{" "}
-                  <br />
-                  CS:{" "}
-                  {playerInfo.stats.totalMinionsKilled +
-                    playerInfo.stats.neutralMinionsKilled}
-                  <br />
-                  Vision Score: {playerInfo.stats.visionScore}
-                </td>
-                <td
-                  className={
-                    "td-items " + (playerInfo.stats.win ? "Won" : "Lost")
-                  }
-                >
-                  {itemsId(playerInfo.stats)}
-                </td>
-                <td
-                  className={
-                    "td-team " + (playerInfo.stats.win ? "Won" : "Lost")
-                  }
-                >
-                  Teams:
-                  <div className="teams">{teamId(element.data)}</div>
-                </td>
-              </tr>
-            );
+                          ).toFixed(2)}
+                        </span>
+                      ) : (
+                        "Perfect"
+                      )}
+                    </b>{" "}
+                    <br />
+                    CS:{" "}
+                    {playerInfo.stats.totalMinionsKilled +
+                      playerInfo.stats.neutralMinionsKilled}
+                    <br />
+                    Vision Score: {playerInfo.stats.visionScore}
+                  </td>
+                  <td
+                    className={
+                      "td-items " + (playerInfo.stats.win ? "Won" : "Lost")
+                    }
+                  >
+                    {itemsId(playerInfo.stats)}
+                  </td>
+                  <td
+                    className={
+                      "td-team " + (playerInfo.stats.win ? "Won" : "Lost")
+                    }
+                  >
+                    Teams:
+                    <div className="teams">{teamId(element.data)}</div>
+                  </td>
+                </tr>
+              );
+            }
           });
 
           this.setState({ matches, loading: false });

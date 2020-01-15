@@ -382,48 +382,52 @@ const teamId = function(matchData) {
   }
 
   for (const player in participantsObj) {
-    if (parseInt(player, 10) < 6) {
-      team1.push(
-        <Row key={parseInt(player, 10)}>
-          <img
-            src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
-              championIder(participantsObj[player].championId).id
-            }_0.jpg`)}
-            className="champIcon-mini"
-            alt={championIder(participantsObj[player].championId).id}
-          />
-          <Link
-            to={{
-              pathname: `/${participantsObj[player].name}`,
-              state: { summonerName: participantsObj[player].name }
-            }}
-            className="team-click"
-          >
-            {participantsObj[player].name}
-          </Link>
-        </Row>
-      );
+    if (!championIder(participantsObj[player].championId)) {
+      console.log("champion unable to be identified from hook");
     } else {
-      team2.push(
-        <Row key={parseInt(player, 10)}>
-          <img
-            src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
-              championIder(participantsObj[player].championId).id
-            }_0.jpg`)}
-            className="champIcon-mini"
-            alt={championIder(participantsObj[player].championId).id}
-          />
-          <Link
-            to={{
-              pathname: `/${participantsObj[player].name}`,
-              state: { summonerName: participantsObj[player].name }
-            }}
-            className="team-click"
-          >
-            {participantsObj[player].name}
-          </Link>
-        </Row>
-      );
+      if (parseInt(player, 10) < 6) {
+        team1.push(
+          <Row key={parseInt(player, 10)}>
+            <img
+              src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
+                championIder(participantsObj[player].championId).id
+              }_0.jpg`)}
+              className="champIcon-mini"
+              alt={championIder(participantsObj[player].championId).id}
+            />
+            <Link
+              to={{
+                pathname: `/${participantsObj[player].name}`,
+                state: { summonerName: participantsObj[player].name }
+              }}
+              className="team-click"
+            >
+              {participantsObj[player].name}
+            </Link>
+          </Row>
+        );
+      } else {
+        team2.push(
+          <Row key={parseInt(player, 10)}>
+            <img
+              src={require(`../assets/dragontail-9.24.2/img/champion/tiles/${
+                championIder(participantsObj[player].championId).id
+              }_0.jpg`)}
+              className="champIcon-mini"
+              alt={championIder(participantsObj[player].championId).id}
+            />
+            <Link
+              to={{
+                pathname: `/${participantsObj[player].name}`,
+                state: { summonerName: participantsObj[player].name }
+              }}
+              className="team-click"
+            >
+              {participantsObj[player].name}
+            </Link>
+          </Row>
+        );
+      }
     }
   }
 
