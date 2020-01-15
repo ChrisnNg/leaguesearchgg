@@ -242,30 +242,41 @@ class App extends Component {
                               )
                             : null}
                         </Col>
-
                         <Col>
                           <Row className="vertical-align padding-top">
                             <img
                               src={require(`./assets/dragontail-9.24.2/img/champion/tiles/${
                                 championIder(
                                   this.state.matchList.matches[index].champion
-                                ).id
+                                )
+                                  ? championIder(
+                                      this.state.matchList.matches[index]
+                                        .champion
+                                    ).id
+                                  : "unknown"
                               }_0.jpg`)}
                               className="champIcon"
                               alt={
                                 championIder(
                                   this.state.matchList.matches[index].champion
-                                ).id
+                                )
+                                  ? championIder(
+                                      this.state.matchList.matches[index]
+                                        .champion
+                                    ).id
+                                  : "unknown"
                               }
                             />
                           </Row>
                           <Row className="text-center">
                             <p>
-                              {
-                                championIder(
-                                  this.state.matchList.matches[index].champion
-                                ).id
-                              }
+                              {championIder(
+                                this.state.matchList.matches[index].champion
+                              )
+                                ? championIder(
+                                    this.state.matchList.matches[index].champion
+                                  ).id
+                                : "unknown"}
                             </p>
                           </Row>
                         </Col>
@@ -462,7 +473,7 @@ class App extends Component {
 
             <h2>Welcome to Chris' League of Legends Summoner Search site!</h2>
             <p>To begin, search up a summoner name.</p>
-            <Button variant="outline-info" onClick={this.handleLanding}>
+            <Button variant="outline-light" onClick={this.handleLanding}>
               Here's one to get you started
             </Button>
           </FadeIn>

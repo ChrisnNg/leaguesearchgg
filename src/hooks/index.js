@@ -64,6 +64,10 @@ const itemsId = function(playerStats) {
 };
 
 const championIder = function(champID) {
+  if (champID === undefined) {
+    return "unknown";
+  }
+
   for (const key in champions.data) {
     if (champions.data[key]["key"] === champID.toString()) {
       return champions.data[key];
