@@ -385,6 +385,11 @@ tr:hover .td-champ .container div .col div .champIcon{
     left: 25%;
     /* width: 50% !important; */
   }
+
+  .matchHistory {
+    margin-top: -325px;
+  }
+
   .won {
     width: 400px;
   }
