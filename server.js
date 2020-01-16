@@ -39,7 +39,7 @@ app.post("/summonerSearch", (req, res) => {
 
   summoner = encodeURI(summoner);
 
-  console.log("summoner = ", summoner);
+  // console.log("summoner = ", summoner);
   var summonerInfoRequest = {
     method: "GET",
     url: `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}`,

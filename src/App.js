@@ -94,9 +94,15 @@ class App extends Component {
 
     // console.log("submission", Summoner);
     axios
-      .post(`${baseUrl}/summonerSearch`, {
-        username: Summoner
-      })
+      .post(
+        `${baseUrl}/summonerSearch`,
+        {
+          username: Summoner
+        },
+        {
+          timeout: 7000
+        }
+      )
       .then(response => {
         // console.log("/summonerSearch", response.data);
         this.setState({
@@ -125,6 +131,14 @@ class App extends Component {
       })
       .catch(function(error) {
         console.log(error);
+
+        return toast(
+          "Server appears to be offline. Please contact Chris to renable it.",
+          {
+            position: toast.POSITION.TOP_CENTER,
+            className: "toastera"
+          }
+        );
       })
       .then(
         axios.spread((...responses) => {
