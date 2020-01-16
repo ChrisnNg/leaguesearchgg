@@ -470,7 +470,7 @@ class App extends Component {
               alt="logo"
             />
 
-            <h2>Welcome to Chris' League of Legends Summoner Search site!</h2>
+            <h2>Welcome to LeagueSearch.GG!</h2>
             <p>To begin, search up a summoner name.</p>
             <Button variant="outline-light" onClick={this.handleLanding}>
               Here's one to get you started
