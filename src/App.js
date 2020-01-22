@@ -100,7 +100,7 @@ class App extends Component {
           username: Summoner
         },
         {
-          timeout: 7000
+          timeout: 15000
         }
       )
       .then(response => {
