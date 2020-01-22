@@ -342,17 +342,19 @@ tr:hover .td-champ .container div .col div .champIcon{
     position: relative;
     left: 19px;
     width: 250px;
+    max-width: 250px;
   }
   
   .td-champ{
     position: relative;
     left: -29px;
-    
+    max-width: 229px;
   }
 
   .td-queue {
     font-size: 8pt;
     min-width: 120px;
+    max-width: 120px;
   }
 
   .td-score {
@@ -361,19 +363,20 @@ tr:hover .td-champ .container div .col div .champIcon{
     top: 164px;
     min-width: 167px;
     left: -349px;
+    max-width: 167px;
   }
   .td-items {
     position: relative;
     top: 164px;
     min-width: 170px;
     left: -366px;
-
+    max-width: 170px;
   }
   .td-team {
     position: relative;
     top: 331px;
     left: -686px;
-
+    max-width: 320px;
     min-width: 320px;
   }
 
