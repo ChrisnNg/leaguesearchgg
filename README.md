@@ -13,7 +13,7 @@ Hosted on [Netlify and Heroku](https://pedantic-bhaskara-90beb7.netlify.com/#/).
 - 🔗 Direct Riot Games API integration  
 
 **Tech Stack:**  
-`React` | `Node.js` | `Express.js` `Heroku` | `Axios` | `Riot API` | `CSS3`  | `HTML`
+`React` | `Node.js` | `Express.js` | `Heroku` | `Axios` | `Riot API` | `CSS3`  | `HTML`
 
 ![DesktopView](./public/landing1.png)
 ![MobileView](./public/mobile.png)
